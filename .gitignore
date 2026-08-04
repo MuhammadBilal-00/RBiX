@@ -1,1 +1,23 @@
 .vercel
+
+# Node / Next.js
+node_modules
+.next
+out
+next-env.d.ts.bak
+
+# PHP secrets
+php/config.php
+php/data/logs/*
+php/data/ratelimit/*
+!php/data/logs/.gitkeep
+!php/data/ratelimit/.gitkeep
+
+# Env
+.env
+.env.local
+.env*.local
+
+# OS
+Thumbs.db
+.DS_Store
