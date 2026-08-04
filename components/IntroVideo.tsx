@@ -1,68 +1,37 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const SESSION_KEY = "rbix-intro-seen";
-// Must exceed the longest source video's actual duration (desktop is the
-// full 300-frame/30fps sequence, ~10s) or this fires before `onEnded` and
-// yanks the video away mid-playback instead of after it naturally finishes.
-const SAFETY_TIMEOUT_MS = 13000;
-
 /**
- * Plays the assembly animation once per session inside the hero viewport
- * only. Everything below the hero (the services grid, etc.) is normal
- * document flow, already rendered and scrollable regardless of video state
- * — nothing is gated behind `ended`. No scroll-jacking: hero text/CTA
- * render immediately in markup, the video is a client-only overlay on top.
+ * Persistent ambient hero background: the video file itself is a seamless
+ * forward+reverse ping-pong loop (baked in at encode time — browsers can't
+ * natively play video backward, so reversing via JS/playbackRate would be
+ * janky; native `loop` on a pre-built ping-pong file is smooth by
+ * construction). It just keeps playing behind the hero text for as long as
+ * the visitor is on the page.
  */
 export default function IntroVideo() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [showVideo, setShowVideo] = useState(false);
-  const [revealed, setRevealed] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const alreadySeen = sessionStorage.getItem(SESSION_KEY) === "1";
-
-    if (reducedMotion || alreadySeen) {
-      setShowVideo(false);
-      setRevealed(true);
-      return;
-    }
-
-    setShowVideo(true);
-    setRevealed(false);
+    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
 
-  useEffect(() => {
-    if (!showVideo) return;
-
-    const safety = window.setTimeout(() => {
-      reveal();
-    }, SAFETY_TIMEOUT_MS);
-
-    return () => window.clearTimeout(safety);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showVideo]);
-
-  function reveal() {
-    sessionStorage.setItem(SESSION_KEY, "1");
-    setRevealed(true);
-  }
-
   return (
-    <section className="hero" aria-label="RBiX Technologies introduction">
-      {showVideo && !revealed && (
+    <section className="hero" aria-label="RBiX Technologies">
+      {reducedMotion ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img className="hero__media" src="/media/intro/poster.jpg" alt="" aria-hidden="true" />
+      ) : (
         <video
-          ref={videoRef}
           className="hero__media"
           autoPlay
           muted
+          loop
           playsInline
           preload="auto"
           poster="/media/intro/poster.jpg"
-          onEnded={reveal}
         >
           <source src="/media/intro/rbix-intro-mobile.webm" type="video/webm" media="(max-width: 768px)" />
           <source src="/media/intro/rbix-intro-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
