@@ -4,7 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 const SESSION_KEY = "rbix-intro-seen";
-const SAFETY_TIMEOUT_MS = 6000;
+// Must exceed the longest source video's actual duration (desktop is the
+// full 300-frame/30fps sequence, ~10s) or this fires before `onEnded` and
+// yanks the video away mid-playback instead of after it naturally finishes.
+const SAFETY_TIMEOUT_MS = 13000;
 
 /**
  * Plays the assembly animation once per session inside the hero viewport
