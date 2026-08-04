@@ -63,12 +63,37 @@
 }
 .card__glyph { display: block; }
 
+/* whole-card link variant — the 4 homepage service cards are entire
+   clickable tiles, not just the "see full service" line at the bottom */
+a.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card__index {
+  position: absolute; top: clamp(22px, 3vw, 34px); right: clamp(22px, 3vw, 34px);
+  font-size: clamp(30px, 3.4vw, 44px); font-weight: 800; letter-spacing: -0.03em;
+  line-height: 1;
+  color: rgba(29, 29, 31, .1);
+}
+.card--ink .card__index { color: rgba(238, 241, 246, .14); }
+
 .card h3 {
   margin: 16px 0 12px;
   font-size: clamp(21px, 2vw, 26px); font-weight: 800; letter-spacing: -0.02em;
   text-wrap: balance;
 }
 .card > p { font-size: 15px; line-height: 1.6; color: var(--ink-70); font-weight: 500; text-wrap: pretty; }
+
+.card__stat {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 16px;
+  font-size: 13px; font-weight: 800; letter-spacing: .01em;
+  color: var(--red);
+}
+.card__stat .sq { width: 6px; height: 6px; background: var(--red); flex: none; }
+
 .card ul { margin-top: 18px; list-style: none; }
 .card li {
   position: relative;
@@ -87,13 +112,13 @@
   margin-top: 22px;
   text-decoration: none; color: var(--ink);
   font-size: 13.5px; font-weight: 800; letter-spacing: .01em;
-  background: none; border: 0; cursor: default;
+  background: none; border: 0;
 }
 .card__more svg { transition: transform .3s var(--ease); }
-a.card__more:hover { color: var(--red); }
-a.card__more:hover svg { transform: translate(2px, -2px); }
+a.card:hover .card__more { color: var(--red); }
+a.card:hover .card__more svg { transform: translate(2px, -2px); }
 .card--ink .card__more { color: #eef1f6; }
-.card--ink a.card__more:hover { color: var(--red); }
+a.card--ink:hover .card__more { color: var(--red); }
 
 .card--ink { background: #1a1a1d; color: #eef1f6; }
 .card--ink svg rect { fill: #eef1f6; }

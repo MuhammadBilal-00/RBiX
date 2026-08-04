@@ -49,90 +49,98 @@ export default function HomePage() {
         <div className="wrap">
           <h2 className="section__title reveal">Four capabilities.<br />One stack.</h2>
           <div className="cards">
-            <article className="card card--ink reveal">
-              <svg className="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <Link className="card card--ink reveal" href="/services/ai-automation/">
+              <span className="card__index" aria-hidden="true">01</span>
+              <svg className="card__glyph" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true">
                 <rect x="40" y="0" width="20" height="20" /><rect x="0" y="40" width="20" height="20" />
                 <rect className="red" x="40" y="40" width="20" height="20" /><rect x="80" y="40" width="20" height="20" />
                 <rect x="40" y="80" width="20" height="20" />
               </svg>
               <h3>AI &amp; Automation</h3>
               <p>Systems that respond to leads, reduce no-shows, recover lost revenue, and remove manual data entry. The foundation of every engagement.</p>
+              <p className="card__stat"><span className="sq"></span>60-second average lead response time</p>
               <ul>
                 <li>Lead Response Engine: qualified WhatsApp/SMS reply in 60s, 24/7</li>
                 <li>No-Show Reduction Flow: 48h / 24h / 2h reminders, one-tap confirm</li>
                 <li>E-commerce Recovery: abandoned carts &amp; COD confirmation</li>
                 <li>Invoice OCR, Payment Chaser &amp; Compliance Tracker</li>
               </ul>
-              <Link className="card__more" href="/services/ai-automation/">
+              <span className="card__more">
                 See the full service
                 <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">
                   <path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" strokeWidth="1.6" />
                 </svg>
-              </Link>
-            </article>
+              </span>
+            </Link>
 
-            <article className="card reveal">
-              <svg className="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <Link className="card reveal" href="/services/web-software/">
+              <span className="card__index" aria-hidden="true">02</span>
+              <svg className="card__glyph" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true">
                 <rect x="0" y="0" width="20" height="20" /><rect x="80" y="0" width="20" height="20" />
                 <rect x="0" y="80" width="20" height="20" /><rect className="red" x="80" y="80" width="20" height="20" />
               </svg>
               <h3>Web &amp; Custom Software</h3>
               <p>From conversion-focused websites to internal operating systems that replace spreadsheets and disconnected SaaS tools.</p>
+              <p className="card__stat"><span className="sq"></span>Built against your real data from day one</p>
               <ul>
                 <li>Conversion-focused business websites wired to automation</li>
                 <li>E-commerce storefronts: Salla, Zid, Shopify, headless</li>
                 <li>Practice / clinic management &amp; broker lead-desk CRMs</li>
                 <li>ERP-lite dashboards &amp; client self-service portals</li>
               </ul>
-              <Link className="card__more" href="/services/web-software/">
+              <span className="card__more">
                 See the full service
                 <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">
                   <path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" strokeWidth="1.6" />
                 </svg>
-              </Link>
-            </article>
+              </span>
+            </Link>
 
-            <article className="card reveal">
-              <svg className="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <Link className="card reveal" href="/services/mobile-apps/">
+              <span className="card__index" aria-hidden="true">03</span>
+              <svg className="card__glyph" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true">
                 <rect x="40" y="0" width="20" height="20" /><rect x="40" y="40" width="20" height="20" />
                 <rect className="red" x="40" y="80" width="20" height="20" />
               </svg>
               <h3>Mobile Applications</h3>
               <p>Purpose-built apps for field teams and distributed staff, including offline-first support where connectivity can&apos;t be guaranteed.</p>
+              <p className="card__stat"><span className="sq"></span>Works fully offline, syncs when back in range</p>
               <ul>
                 <li>Field service &amp; inspection app: offline checklists</li>
                 <li>GPS- and time-stamped photos, auto-sync in signal range</li>
                 <li>Staff operations app: rosters, tasks, clock-in/out</li>
                 <li>Real-time completion status for managers</li>
               </ul>
-              <Link className="card__more" href="/services/mobile-apps/">
+              <span className="card__more">
                 See the full service
                 <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">
                   <path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" strokeWidth="1.6" />
                 </svg>
-              </Link>
-            </article>
+              </span>
+            </Link>
 
-            <article className="card reveal">
-              <svg className="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <Link className="card reveal" href="/services/data-analytics/">
+              <span className="card__index" aria-hidden="true">04</span>
+              <svg className="card__glyph" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true">
                 <rect x="0" y="80" width="20" height="20" /><rect x="40" y="40" width="20" height="20" />
                 <rect className="red" x="80" y="0" width="20" height="20" />
               </svg>
               <h3>Data Analytics &amp; BI</h3>
               <p>Dashboards that turn scattered data into a single, daily-updated view of marketing, cash flow, and staff output.</p>
+              <p className="card__stat"><span className="sq"></span>Dashboards updated daily, not monthly</p>
               <ul>
                 <li>Revenue &amp; marketing attribution: cost-per-lead by channel</li>
                 <li>Financial health: cash flow, receivables aging, profitability</li>
                 <li>Staff / agent performance: response time &amp; conversion</li>
                 <li>Weekly leaderboards and individual scorecards</li>
               </ul>
-              <Link className="card__more" href="/services/data-analytics/">
+              <span className="card__more">
                 See the full service
                 <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">
                   <path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" strokeWidth="1.6" />
                 </svg>
-              </Link>
-            </article>
+              </span>
+            </Link>
           </div>
         </div>
       </RevealGroup>
