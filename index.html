@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RBiX Technologies | AI &amp; Automation, Software, Apps, Analytics</title>
+<meta name="description" content="RBiX Technologies replaces manual, disconnected workflows with automated, data-driven systems: AI &amp; automation, web &amp; custom software, mobile apps, and data analytics.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0f1a2e">
+<meta property="og:title" content="RBiX Technologies | AI &amp; Automation, Software, Apps, Analytics">
+<meta property="og:description" content="RBiX Technologies replaces manual, disconnected workflows with automated, data-driven systems.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/FRAME2/ezgif-frame-300.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="0" y="0" width="20" height="20" fill="%231d1d1f"/><rect x="80" y="0" width="20" height="20" fill="%231d1d1f"/><rect x="20" y="20" width="20" height="20" fill="%231d1d1f"/><rect x="60" y="20" width="20" height="20" fill="%231d1d1f"/><rect x="40" y="40" width="20" height="20" fill="%231d1d1f"/><rect x="20" y="60" width="20" height="20" fill="%231d1d1f"/><rect x="60" y="60" width="20" height="20" fill="%231d1d1f"/><rect x="0" y="80" width="20" height="20" fill="%231d1d1f"/><rect x="80" y="80" width="20" height="20" fill="%23e8321c"/></svg>'>
+<link rel="stylesheet" href="/styles.css">
+<noscript><style>.loader{display:none}body.loading{overflow:auto}</style></noscript>
+</head>
+<body class="loading">
+
+<a class="skip" href="#about">Skip intro animation</a>
+
+<!-- ══════════════ LOADER ══════════════ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <svg class="loader__mark" viewBox="0 0 100 100" width="56" height="56">
+    <rect x="0"  y="0"  width="20" height="20"/><rect x="80" y="0"  width="20" height="20"/>
+    <rect x="20" y="20" width="20" height="20"/><rect x="60" y="20" width="20" height="20"/>
+    <rect x="40" y="40" width="20" height="20"/>
+    <rect x="20" y="60" width="20" height="20"/><rect x="60" y="60" width="20" height="20"/>
+    <rect x="0"  y="80" width="20" height="20"/><rect class="red" x="80" y="80" width="20" height="20"/>
+  </svg>
+  <div class="loader__bar"><span id="loaderFill"></span></div>
+  <p class="loader__pct" id="loaderPct">0%</p>
+</div>
+
+<!-- ══════════════ NAV ══════════════ -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="/" aria-label="RBiX Technologies">
+    <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+      <rect x="0"  y="0"  width="20" height="20"/><rect x="80" y="0"  width="20" height="20"/>
+      <rect x="20" y="20" width="20" height="20"/><rect x="60" y="20" width="20" height="20"/>
+      <rect x="40" y="40" width="20" height="20"/>
+      <rect x="20" y="60" width="20" height="20"/><rect x="60" y="60" width="20" height="20"/>
+      <rect x="0"  y="80" width="20" height="20"/><rect class="red" x="80" y="80" width="20" height="20"/>
+    </svg>
+    <span class="nav__wordmark">RB<span class="dotless">ı</span>X</span>
+  </a>
+  <nav class="nav__links" id="navLinks" aria-label="Primary">
+    <div class="nav__item">
+      <button type="button" aria-haspopup="true" aria-expanded="false">Services<svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="nav__drop">
+        <a href="/services/ai-automation/">AI &amp; Automation<small>Lead response, no-shows, invoicing</small></a>
+        <a href="/services/web-software/">Web &amp; Custom Software<small>Sites, storefronts, internal systems</small></a>
+        <a href="/services/mobile-apps/">Mobile Applications<small>Field, inspection &amp; staff apps</small></a>
+        <a href="/services/data-analytics/">Data Analytics &amp; BI<small>Dashboards, attribution, scorecards</small></a>
+      </div>
+    </div>
+    <a href="#approach">How we work</a>
+    <div class="nav__item">
+      <button type="button" aria-haspopup="true" aria-expanded="false">Industries<svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="nav__drop nav__drop--wide">
+        <a href="/industries/clinics-aesthetics/">Clinics &amp; Aesthetics</a>
+        <a href="/industries/real-estate/">Real Estate</a>
+        <a href="/industries/ecommerce/">E-commerce</a>
+        <a href="/industries/field-services/">Home &amp; Field Services</a>
+        <a href="/industries/professional-services/">Professional Services</a>
+        <a href="/industries/construction/">Construction</a>
+        <a href="/industries/retail-hospitality/">Retail &amp; Hospitality</a>
+        <a href="/industries/compliance-smes/">Compliance-driven SMEs</a>
+      </div>
+    </div>
+    <a href="/testimonials/">Testimonials</a>
+    <a href="/contact/">Contact</a>
+  </nav>
+  <a class="nav__cta" href="/contact/">Get in Touch<span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+  <button class="nav__burger" id="navBurger" aria-expanded="false" aria-controls="navOverlay" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<div class="nav__overlay" id="navOverlay">
+  <nav aria-label="Mobile">
+    <a href="/services/ai-automation/">AI &amp; Automation</a>
+    <a href="/services/web-software/">Web &amp; Custom Software</a>
+    <a href="/services/mobile-apps/">Mobile Applications</a>
+    <a href="/services/data-analytics/">Data Analytics &amp; BI</a>
+    <a href="#approach">How we work</a>
+    <a href="/testimonials/">Testimonials</a>
+    <a href="/contact/">Contact</a>
+    <a class="nav__overlay-cta" href="/contact/">Get in Touch</a>
+  </nav>
+</div>
+
+<main id="top">
+
+  <!-- ══════════════ SCROLLY SEQUENCE ══════════════ -->
+  <section class="scrolly" id="scrolly">
+    <div class="scrolly__sticky">
+      <canvas id="seq" aria-label="Animation of scattered cubes assembling into the RBiX mark and its four service lines"></canvas>
+
+      <div class="cap cap--hero" data-start="0.00" data-end="0.16">
+        <h1>A thousand<br>moving pieces.</h1>
+        <p class="cap__sub">Every business runs on them: leads, appointments, invoices, staff. <br class="bp">RBiX builds the systems that make them move together.</p>
+        <div class="cap__actions">
+          <a class="btn btn--red" href="/contact/">Get in Touch<span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+          <a class="btn btn--line" href="#services">Explore the stack</a>
+        </div>
+      </div>
+
+      <div class="cap cap--left" data-start="0.28" data-end="0.50">
+        <h2>Automation pulls<br>them into line.</h2>
+        <p class="cap__sub">Leads answered in 60 seconds. No-shows reminded. <br class="bp">Invoices chased, automatically.</p>
+      </div>
+
+      <div class="cap cap--right" data-start="0.52" data-end="0.74">
+        <h2>Until everything<br>clicks.</h2>
+        <p class="cap__sub">Four service lines, engineered as <br class="bp">one delivery stack.</p>
+      </div>
+
+      <div class="cap cap--end" data-start="0.90" data-end="1.00">
+        <a class="cap__hint" href="#services">Explore the stack</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ ABOUT ══════════════ -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <h2 class="about__title" id="aboutTitle">We replace manual, disconnected workflows with <em>automated, data-driven systems.</em></h2>
+      <p class="about__body reveal">Four core service lines (AI &amp; Automation, Web &amp; Custom Software, Mobile Applications, and Data Analytics) combined into a single delivery stack for each client, rather than treated as separate projects. Every engagement ships a working system, not just a proposal: we build against real inbound leads, real appointments, and real invoices from week one.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ SERVICES ══════════════ -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <h2 class="section__title reveal">Four capabilities.<br>One stack.</h2>
+
+      <div class="cards">
+        <article class="card card--ink reveal">
+          <svg class="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <rect x="40" y="0" width="20" height="20"/><rect x="0" y="40" width="20" height="20"/>
+            <rect class="red" x="40" y="40" width="20" height="20"/><rect x="80" y="40" width="20" height="20"/>
+            <rect x="40" y="80" width="20" height="20"/>
+          </svg>
+          <h3>AI &amp; Automation</h3>
+          <p>Systems that respond to leads, reduce no-shows, recover lost revenue, and remove manual data entry. The foundation of every engagement.</p>
+          <ul>
+            <li>Lead Response Engine: qualified WhatsApp/SMS reply in 60s, 24/7</li>
+            <li>No-Show Reduction Flow: 48h / 24h / 2h reminders, one-tap confirm</li>
+            <li>E-commerce Recovery: abandoned carts &amp; COD confirmation</li>
+            <li>Invoice OCR, Payment Chaser &amp; Compliance Tracker</li>
+          </ul>
+          <a class="card__more" href="/services/ai-automation/">See the full service<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </article>
+
+        <article class="card reveal">
+          <svg class="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <rect x="0" y="0" width="20" height="20"/><rect x="80" y="0" width="20" height="20"/>
+            <rect x="0" y="80" width="20" height="20"/><rect class="red" x="80" y="80" width="20" height="20"/>
+          </svg>
+          <h3>Web &amp; Custom Software</h3>
+          <p>From conversion-focused websites to internal operating systems that replace spreadsheets and disconnected SaaS tools.</p>
+          <ul>
+            <li>Conversion-focused business websites wired to automation</li>
+            <li>E-commerce storefronts: Salla, Zid, Shopify, headless</li>
+            <li>Practice / clinic management &amp; broker lead-desk CRMs</li>
+            <li>ERP-lite dashboards &amp; client self-service portals</li>
+          </ul>
+          <a class="card__more" href="/services/web-software/">See the full service<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </article>
+
+        <article class="card reveal">
+          <svg class="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <rect x="40" y="0" width="20" height="20"/><rect x="40" y="40" width="20" height="20"/>
+            <rect class="red" x="40" y="80" width="20" height="20"/>
+          </svg>
+          <h3>Mobile Applications</h3>
+          <p>Purpose-built apps for field teams and distributed staff, including offline-first support where connectivity can't be guaranteed.</p>
+          <ul>
+            <li>Field service &amp; inspection app: offline checklists</li>
+            <li>GPS- and time-stamped photos, auto-sync in signal range</li>
+            <li>Staff operations app: rosters, tasks, clock-in/out</li>
+            <li>Real-time completion status for managers</li>
+          </ul>
+          <a class="card__more" href="/services/mobile-apps/">See the full service<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </article>
+
+        <article class="card reveal">
+          <svg class="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <rect x="0" y="80" width="20" height="20"/><rect x="40" y="40" width="20" height="20"/>
+            <rect class="red" x="80" y="0" width="20" height="20"/>
+          </svg>
+          <h3>Data Analytics &amp; BI</h3>
+          <p>Dashboards that turn scattered data into a single, daily-updated view of marketing, cash flow, and staff output.</p>
+          <ul>
+            <li>Revenue &amp; marketing attribution: cost-per-lead by channel</li>
+            <li>Financial health: cash flow, receivables aging, profitability</li>
+            <li>Staff / agent performance: response time &amp; conversion</li>
+            <li>Weekly leaderboards and individual scorecards</li>
+          </ul>
+          <a class="card__more" href="/services/data-analytics/">See the full service<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ APPROACH ══════════════ -->
+  <section class="approach" id="approach">
+    <div class="wrap approach__grid">
+      <div class="approach__head">
+        <h2 class="section__title reveal">Automation first.<br>Software when it's earned.</h2>
+        <p class="approach__note reveal">Every engagement includes a working automation or system, not just a proposal.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="step__num">1</span>
+          <h3>Automate</h3>
+          <p>Every engagement leads with AI &amp; Automation, the fastest path to a measurable result, usually inside the first few weeks.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step__num">2</span>
+          <h3>Measure</h3>
+          <p>Data analytics rides along as the retention layer, giving owners visibility into exactly what the automation is producing.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step__num">3</span>
+          <h3>Scale</h3>
+          <p>Custom software and mobile apps come in once a workflow has proven itself and needs a dedicated system of its own.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ INDUSTRIES ══════════════ -->
+  <section class="industries" id="industries">
+    <div class="wrap">
+      <h2 class="section__title reveal">Built around a reusable core,<br>adapted to your workflow.</h2>
+      <div class="ind-grid">
+        <a class="ind reveal" href="/industries/clinics-aesthetics/"><h3>Clinics &amp; Aesthetics</h3><p>Dental, cosmetic, aesthetic &amp; veterinary practices</p></a>
+        <a class="ind reveal" href="/industries/real-estate/"><h3>Real Estate</h3><p>Brokerages and property / facility management firms</p></a>
+        <a class="ind reveal" href="/industries/ecommerce/"><h3>E-commerce</h3><p>Direct-to-consumer and retail brands selling online</p></a>
+        <a class="ind reveal" href="/industries/field-services/"><h3>Home &amp; Field Services</h3><p>Contractors, inspection and maintenance businesses</p></a>
+        <a class="ind reveal" href="/industries/professional-services/"><h3>Professional Services</h3><p>Accounting, bookkeeping and legal practices</p></a>
+        <a class="ind reveal" href="/industries/construction/"><h3>Construction</h3><p>Firms managing tenders, site work and certifications</p></a>
+        <a class="ind reveal" href="/industries/retail-hospitality/"><h3>Retail &amp; Hospitality</h3><p>Multi-branch retail, salons, appointment-based venues</p></a>
+        <a class="ind reveal" href="/industries/compliance-smes/"><h3>Compliance-driven SMEs</h3><p>Invoicing, tax and regulatory deadline management</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ TESTIMONIALS ══════════════ -->
+  <section class="testimonials" id="testimonials">
+    <div class="wrap">
+      <h2 class="section__title reveal">What clients say<br>after we ship.</h2>
+
+      <div class="testi-grid">
+        <article class="testi testi--featured reveal">
+          <p class="testi__tag"><span class="sq"></span>Lead Routing &amp; CRM Automation</p>
+          <p class="testi__headline">"Reduced Our Lead Response Time from 4 Hours to 2 Minutes"</p>
+          <p class="testi__body">Before working with them, our sales team was drowning in manual lead assignment and sync issues across our tech stack. They built an automated pipeline using n8n that routes, enriches, and assigns inbound leads instantly. Our conversion rates jumped by 30% within the first month.</p>
+          <footer class="testi__meta">
+            <span class="testi__name">Michael Sterling</span>
+            <span class="testi__role">VP of Sales &amp; Operations, Elevate Growth Partners</span>
+          </footer>
+        </article>
+
+        <article class="testi reveal">
+          <p class="testi__tag"><span class="sq"></span>Omnichannel AI Chatbots</p>
+          <p class="testi__headline">"Centralized Support Across WhatsApp &amp; Social Media with Deep Complaint Analytics"</p>
+          <p class="testi__body">Managing customer inquiries across WhatsApp, Facebook, and Instagram was a nightmare for our support agents. They deployed a unified custom chatbot system that handles routine inquiries and complaint tickets across all three channels automatically.</p>
+          <footer class="testi__meta">
+            <span class="testi__name">Farhan Malik</span>
+            <span class="testi__role">Director of Customer Experience, OmniRetail Networks</span>
+          </footer>
+        </article>
+
+        <article class="testi reveal">
+          <p class="testi__tag"><span class="sq"></span>Restaurant Management &amp; POS</p>
+          <p class="testi__headline">"Transformed Our Restaurant Operations During Peak Rush Hours"</p>
+          <p class="testi__body">They built a custom restaurant management and POS system designed around our exact kitchen and front-of-house workflow. Kitchen order accuracy is near 100%, and multi-branch live tracking lets us monitor floor activity in real time.</p>
+          <footer class="testi__meta">
+            <span class="testi__name">Tariq Mahmood</span>
+            <span class="testi__role">Managing Director, Flavors Hospitality Group</span>
+          </footer>
+        </article>
+      </div>
+
+      <a class="btn btn--line" href="/testimonials/" style="margin-top:clamp(32px,4vw,48px)">Read all client testimonials</a>
+    </div>
+  </section>
+
+  <!-- ══════════════ CONTACT ══════════════ -->
+  <section class="contact" id="contact">
+    <div class="contact__divider" aria-hidden="true"></div>
+    <div class="wrap contact__inner">
+      <div class="contact__brand reveal reveal--scale">
+        <svg viewBox="0 0 100 100" width="88" height="88" aria-hidden="true">
+          <rect x="0"  y="0"  width="20" height="20"/><rect x="80" y="0"  width="20" height="20"/>
+          <rect x="20" y="20" width="20" height="20"/><rect x="60" y="20" width="20" height="20"/>
+          <rect x="40" y="40" width="20" height="20"/>
+          <rect x="20" y="60" width="20" height="20"/><rect x="60" y="60" width="20" height="20"/>
+          <rect x="0"  y="80" width="20" height="20"/><rect class="red" x="80" y="80" width="20" height="20"/>
+        </svg>
+        <span class="contact__wordmark">RB<span class="dotless">ı</span>X</span>
+      </div>
+      <h2 class="reveal">Let's automate<br>something real.</h2>
+      <p class="contact__sub reveal">One conversation is enough to find the workflow costing you the most.</p>
+      <div class="contact__actions reveal">
+        <a class="btn btn--red" href="/contact/">Get in Touch<span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+        <a class="btn-link" href="tel:+447737641862">or call +44 7737 641862</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__cols">
+        <div>
+          <a class="footer__brand" href="/">
+            <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+              <rect x="0"  y="0"  width="20" height="20"/><rect x="80" y="0"  width="20" height="20"/>
+              <rect x="20" y="20" width="20" height="20"/><rect x="60" y="20" width="20" height="20"/>
+              <rect x="40" y="40" width="20" height="20"/>
+              <rect x="20" y="60" width="20" height="20"/><rect x="60" y="60" width="20" height="20"/>
+              <rect x="0"  y="80" width="20" height="20"/><rect class="red" x="80" y="80" width="20" height="20"/>
+            </svg>
+            <span>RB<span class="dotless">ı</span>X</span>
+          </a>
+          <p class="footer__tagline">AI &amp; software agency replacing manual, disconnected workflows with automated, data-driven systems.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/services/ai-automation/">AI &amp; Automation</a></li>
+            <li><a href="/services/web-software/">Web &amp; Custom Software</a></li>
+            <li><a href="/services/mobile-apps/">Mobile Applications</a></li>
+            <li><a href="/services/data-analytics/">Data Analytics &amp; BI</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Industries</h4>
+          <ul>
+            <li><a href="/industries/clinics-aesthetics/">Clinics &amp; Aesthetics</a></li>
+            <li><a href="/industries/real-estate/">Real Estate</a></li>
+            <li><a href="/industries/ecommerce/">E-commerce</a></li>
+            <li><a href="/industries/field-services/">Home &amp; Field Services</a></li>
+            <li><a href="/industries/professional-services/">Professional Services</a></li>
+            <li><a href="/industries/construction/">Construction</a></li>
+            <li><a href="/industries/retail-hospitality/">Retail &amp; Hospitality</a></li>
+            <li><a href="/industries/compliance-smes/">Compliance-driven SMEs</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/testimonials/">Testimonials</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="mailto:info@rbixtechnologies.com">info@rbixtechnologies.com</a></li>
+            <li><a href="tel:+447737641862">+44 7737 641862</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__row">
+        <p>© 2026 RBiX Technologies. All rights reserved.</p>
+        <p class="footer__internal">PK office: <a href="tel:+923104766280">0310 4766280</a> / <a href="tel:+923150083914">0315 0083914</a></p>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script src="/script.js"></script>
+</body>
+</html>

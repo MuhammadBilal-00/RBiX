@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Estate | RBiX Technologies</title>
+<meta name="description" content="Systems built for brokerages and property/facility management firms — automatic lead capture and routing, viewing scheduling, portfolio-wide maintenance tracking, and weekly agent performance dashboards.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0f1a2e">
+<meta property="og:title" content="Real Estate | RBiX Technologies">
+<meta property="og:description" content="Systems built for brokerages and property/facility management firms.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="0" y="0" width="20" height="20" fill="%231d1d1f"/><rect x="80" y="0" width="20" height="20" fill="%231d1d1f"/><rect x="20" y="20" width="20" height="20" fill="%231d1d1f"/><rect x="60" y="20" width="20" height="20" fill="%231d1d1f"/><rect x="40" y="40" width="20" height="20" fill="%231d1d1f"/><rect x="20" y="60" width="20" height="20" fill="%231d1d1f"/><rect x="60" y="60" width="20" height="20" fill="%231d1d1f"/><rect x="0" y="80" width="20" height="20" fill="%231d1d1f"/><rect x="80" y="80" width="20" height="20" fill="%23e8321c"/></svg>'>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="/" aria-label="RBiX Technologies">
+    <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+      <rect x="0"  y="0"  width="20" height="20"/><rect x="80" y="0"  width="20" height="20"/>
+      <rect x="20" y="20" width="20" height="20"/><rect x="60" y="20" width="20" height="20"/>
+      <rect x="40" y="40" width="20" height="20"/>
+      <rect x="20" y="60" width="20" height="20"/><rect x="60" y="60" width="20" height="20"/>
+      <rect x="0"  y="80" width="20" height="20"/><rect class="red" x="80" y="80" width="20" height="20"/>
+    </svg>
+    <span class="nav__wordmark">RB<span class="dotless">ı</span>X</span>
+  </a>
+  <nav class="nav__links" id="navLinks" aria-label="Primary">
+    <div class="nav__item">
+      <button type="button" aria-haspopup="true" aria-expanded="false">Services<svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="nav__drop">
+        <a href="/services/ai-automation/">AI &amp; Automation<small>Lead response, no-shows, invoicing</small></a>
+        <a href="/services/web-software/">Web &amp; Custom Software<small>Sites, storefronts, internal systems</small></a>
+        <a href="/services/mobile-apps/">Mobile Applications<small>Field, inspection &amp; staff apps</small></a>
+        <a href="/services/data-analytics/">Data Analytics &amp; BI<small>Dashboards, attribution, scorecards</small></a>
+      </div>
+    </div>
+    <a href="/#approach">How we work</a>
+    <div class="nav__item">
+      <button type="button" aria-haspopup="true" aria-expanded="false">Industries<svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="nav__drop nav__drop--wide">
+        <a href="/industries/clinics-aesthetics/">Clinics &amp; Aesthetics</a>
+        <a href="/industries/real-estate/">Real Estate</a>
+        <a href="/industries/ecommerce/">E-commerce</a>
+        <a href="/industries/field-services/">Home &amp; Field Services</a>
+        <a href="/industries/professional-services/">Professional Services</a>
+        <a href="/industries/construction/">Construction</a>
+        <a href="/industries/retail-hospitality/">Retail &amp; Hospitality</a>
+        <a href="/industries/compliance-smes/">Compliance-driven SMEs</a>
+      </div>
+    </div>
+    <a href="/testimonials/">Testimonials</a>
+    <a href="/contact/">Contact</a>
+  </nav>
+  <a class="nav__cta" href="/contact/">Get in Touch<span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+  <button class="nav__burger" id="navBurger" aria-expanded="false" aria-controls="navOverlay" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<div class="nav__overlay" id="navOverlay">
+  <nav aria-label="Mobile">
+    <a href="/services/ai-automation/">AI &amp; Automation</a>
+    <a href="/services/web-software/">Web &amp; Custom Software</a>
+    <a href="/services/mobile-apps/">Mobile Applications</a>
+    <a href="/services/data-analytics/">Data Analytics &amp; BI</a>
+    <a href="/#approach">How we work</a>
+    <a href="/testimonials/">Testimonials</a>
+    <a href="/contact/">Contact</a>
+    <a class="nav__overlay-cta" href="/contact/">Get in Touch</a>
+  </nav>
+</div>
+
+<main>
+
+  <!-- ══════════════ PAGE HEADER ══════════════ -->
+  <header class="pagehead">
+    <div class="wrap">
+      <p class="crumb"><a href="/">Home</a><span>/</span><a href="/#industries">Industries</a><span>/</span><em>Real Estate</em></p>
+      <p class="tag"><span class="sq"></span>Industry</p>
+      <h1>Real Estate</h1>
+      <p class="pagehead__lede">Brokerages live or die on lead volume and how fast a viewing gets scheduled. Property and facility management firms live on the opposite problem — many properties, many tenants, and maintenance requests scattered across a whole portfolio. RBiX builds the systems that keep leads moving and portfolios visible.</p>
+      <div class="pagehead__actions">
+        <a class="btn btn--red" href="/contact/">Get in Touch<span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+        <a class="btn btn--line" href="#services">See relevant services</a>
+      </div>
+      <div class="pagehead__meta">
+        <div><strong>Typical clients</strong>Residential and commercial brokerages, and property/facility management firms.</div>
+        <div><strong>Most common starting point</strong>A lead desk that qualifies and routes portal leads before they go cold.</div>
+        <div><strong>What usually follows</strong>Field service tooling and performance analytics once the pipeline is under control.</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════ THE CHALLENGE ══════════════ -->
+  <section class="walk walk--light">
+    <div class="wrap walk__grid2">
+      <div class="walk__head">
+        <p class="tag"><span class="sq"></span>The Challenge</p>
+        <h2 class="walk__title">A lead goes cold within hours — and most portfolios have no map.</h2>
+      </div>
+      <div class="prose">
+        <p>Leads arrive from several portals and channels at once, and every one of them goes stale within hours if it isn't qualified and routed to the right agent fast. In practice that routing is manual — someone checking inboxes, matching a lead to an area or budget, then chasing the back-and-forth of arranging a viewing time. Management, meanwhile, has almost no visibility into agent performance or pipeline health until the numbers get pulled together at month-end.</p>
+        <p>Property and facility managers face a different version of the same problem: maintenance requests come in from tenants across dozens of properties with no structured way to track what's open, what's overdue, and who's supposed to be on site. Neither problem needs more headcount. Both need the routing, scheduling, and tracking automated so nothing depends on someone remembering to check an inbox.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ RELEVANT SERVICES ══════════════ -->
+  <section class="walk walk--soft" id="services">
+    <div class="wrap">
+      <div class="walk__head">
+        <p class="tag"><span class="sq"></span>Built For This Industry</p>
+        <h2 class="walk__title">The four services that show up most in real estate.</h2>
+      </div>
+      <div class="cards">
+        <article class="card card--ink reveal">
+          <svg class="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <rect x="0" y="0" width="20" height="20"/><rect x="80" y="0" width="20" height="20"/>
+            <rect x="0" y="80" width="20" height="20"/><rect class="red" x="80" y="80" width="20" height="20"/>
+          </svg>
+          <h3>Web &amp; Custom Software</h3>
+          <p>A broker / lead desk built as a CRM: leads pulled automatically from every portal and channel, qualified and routed by rule — area, budget, listing — with viewings scheduled straight into agent calendars and performance rolled into a weekly dashboard.</p>
+          <a class="card__more" href="/services/web-software/">See the full service<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </article>
+        <article class="card reveal">
+          <svg class="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <rect x="40" y="0" width="20" height="20"/><rect x="0" y="40" width="20" height="20"/>
+            <rect class="red" x="40" y="40" width="20" height="20"/><rect x="80" y="40" width="20" height="20"/>
+            <rect x="40" y="80" width="20" height="20"/>
+          </svg>
+          <h3>AI &amp; Automation</h3>
+          <p>A lead response engine that answers portal and web inquiries with a qualified reply in minutes, not hours, backed by a quote follow-up sequence that keeps nurturing every prospect who isn't ready to view yet.</p>
+          <a class="card__more" href="/services/ai-automation/">See the full service<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </article>
+        <article class="card reveal">
+          <svg class="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <rect x="40" y="0" width="20" height="20"/><rect x="40" y="40" width="20" height="20"/>
+            <rect class="red" x="40" y="80" width="20" height="20"/>
+          </svg>
+          <h3>Mobile Applications</h3>
+          <p>A field service and inspection app for property and facility managers running site inspections and maintenance jobs across a portfolio, built offline-first so a weak signal on-site never stops the work.</p>
+          <a class="card__more" href="/services/mobile-apps/">See the full service<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </article>
+        <article class="card reveal">
+          <svg class="card__glyph" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+            <rect x="0" y="80" width="20" height="20"/><rect x="40" y="40" width="20" height="20"/>
+            <rect class="red" x="80" y="0" width="20" height="20"/>
+          </svg>
+          <h3>Data Analytics &amp; BI</h3>
+          <p>Staff and agent performance analytics — a weekly leaderboard across the team plus an individual scorecard per agent, so pipeline health is visible every week instead of reconstructed at month-end.</p>
+          <a class="card__more" href="/services/data-analytics/">See the full service<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ WHY IT MATTERS ══════════════ -->
+  <section class="walk walk--ink">
+    <div class="wrap walk__grid2">
+      <div class="walk__head">
+        <p class="tag"><span class="sq"></span>Why It Matters</p>
+        <h2 class="walk__title">The listing goes to whoever replies first.</h2>
+      </div>
+      <ul class="points">
+        <li><strong>Speed wins listings.</strong><span>A fast, qualified response wins a lead before a competing brokerage has even opened the inquiry.</span></li>
+        <li><strong>No more scheduling back-and-forth.</strong><span>Viewings land directly on an agent's calendar instead of a chain of messages trying to find a time that works.</span></li>
+        <li><strong>Portfolio-wide visibility for facility managers.</strong><span>Every maintenance request across every property tracked in one place, not scattered across tenant calls and texts.</span></li>
+        <li><strong>Performance visible every week, not once a month.</strong><span>Agent activity and pipeline health show up on a weekly dashboard instead of being reconstructed at month-end.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ FINAL CTA ══════════════ -->
+  <section class="finalcta">
+    <div class="wrap">
+      <h2>Losing listings to slower follow-up?</h2>
+      <p>Let's find the fastest way to get your leads qualified, routed, and viewed.</p>
+      <div class="finalcta__actions">
+        <a class="btn btn--red" href="/contact/">Get in Touch<span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+        <a class="btn-link" href="tel:+447737641862">or call +44 7737 641862</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__cols">
+        <div>
+          <a class="footer__brand" href="/">
+            <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+              <rect x="0"  y="0"  width="20" height="20"/><rect x="80" y="0"  width="20" height="20"/>
+              <rect x="20" y="20" width="20" height="20"/><rect x="60" y="20" width="20" height="20"/>
+              <rect x="40" y="40" width="20" height="20"/>
+              <rect x="20" y="60" width="20" height="20"/><rect x="60" y="60" width="20" height="20"/>
+              <rect x="0"  y="80" width="20" height="20"/><rect class="red" x="80" y="80" width="20" height="20"/>
+            </svg>
+            <span>RB<span class="dotless">ı</span>X</span>
+          </a>
+          <p class="footer__tagline">AI &amp; software agency replacing manual, disconnected workflows with automated, data-driven systems.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/services/ai-automation/">AI &amp; Automation</a></li>
+            <li><a href="/services/web-software/">Web &amp; Custom Software</a></li>
+            <li><a href="/services/mobile-apps/">Mobile Applications</a></li>
+            <li><a href="/services/data-analytics/">Data Analytics &amp; BI</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Industries</h4>
+          <ul>
+            <li><a href="/industries/clinics-aesthetics/">Clinics &amp; Aesthetics</a></li>
+            <li><a href="/industries/real-estate/">Real Estate</a></li>
+            <li><a href="/industries/ecommerce/">E-commerce</a></li>
+            <li><a href="/industries/field-services/">Home &amp; Field Services</a></li>
+            <li><a href="/industries/professional-services/">Professional Services</a></li>
+            <li><a href="/industries/construction/">Construction</a></li>
+            <li><a href="/industries/retail-hospitality/">Retail &amp; Hospitality</a></li>
+            <li><a href="/industries/compliance-smes/">Compliance-driven SMEs</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/testimonials/">Testimonials</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="mailto:info@rbixtechnologies.com">info@rbixtechnologies.com</a></li>
+            <li><a href="tel:+447737641862">+44 7737 641862</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__row">
+        <p>© 2026 RBiX Technologies. All rights reserved.</p>
+        <p class="footer__internal">PK office: <a href="tel:+923104766280">0310 4766280</a> / <a href="tel:+923150083914">0315 0083914</a></p>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script src="/common.js"></script>
+</body>
+</html>
