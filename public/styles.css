@@ -156,7 +156,11 @@ a:focus-visible, button:focus-visible {
 .nav__item:hover > button svg, .nav__item:focus-within > button svg { transform: rotate(180deg); }
 
 .nav__drop {
-  position: absolute; top: calc(100% + 14px); left: 50%;
+  /* Small gap on purpose: this menu opens on pure CSS :hover (no JS grace
+     period like the Next.js app has), so a wide dead zone between the
+     trigger and the panel makes the menu close before the pointer arrives
+     when moving diagonally down into it. */
+  position: absolute; top: calc(100% + 4px); left: 50%;
   transform: translateX(-50%) translateY(6px);
   min-width: 240px;
   background: rgba(255, 255, 255, .9);

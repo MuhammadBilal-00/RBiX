@@ -13,15 +13,38 @@ export default function Header() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  // The dropdown sits 14px below its trigger (see .nav__drop's `top` offset)
+  // so a straight-line mouse move from button to menu briefly crosses dead
+  // space outside .nav__item's hoverable box, firing onMouseLeave early and
+  // closing the menu before the pointer arrives. A short grace period (that
+  // hover re-entering the item cancels) absorbs that gap.
+  const openMenu = (i: number) => {
+    clearTimeout(closeTimer.current);
+    setOpenIndex(i);
+  };
+  const scheduleClose = (i: number) => {
+    clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => {
+      setOpenIndex((cur) => (cur === i ? null : cur));
+    }, 200);
+  };
+
+  useEffect(() => {
+    return () => clearTimeout(closeTimer.current);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        clearTimeout(closeTimer.current);
         setOpenIndex(null);
       }
     }
     function handleEscape(e: KeyboardEvent) {
       if (e.key === "Escape") {
+        clearTimeout(closeTimer.current);
         setOpenIndex(null);
         setMobileOpen(false);
       }
@@ -67,8 +90,8 @@ export default function Header() {
         <nav className="nav__links" aria-label="Primary">
           <div
             className={`nav__item${openIndex === 0 ? " open" : ""}`}
-            onMouseEnter={() => setOpenIndex(0)}
-            onMouseLeave={() => setOpenIndex((i) => (i === 0 ? null : i))}
+            onMouseEnter={() => openMenu(0)}
+            onMouseLeave={() => scheduleClose(0)}
             onBlur={(e) => {
               if (!e.currentTarget.contains(e.relatedTarget as Node)) {
                 setOpenIndex((i) => (i === 0 ? null : i));
@@ -79,7 +102,7 @@ export default function Header() {
               type="button"
               aria-haspopup="true"
               aria-expanded={openIndex === 0}
-              onClick={() => setOpenIndex(openIndex === 0 ? null : 0)}
+              onClick={() => (openIndex === 0 ? setOpenIndex(null) : openMenu(0))}
             >
               Services
               <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">
@@ -108,8 +131,8 @@ export default function Header() {
 
           <div
             className={`nav__item${openIndex === 1 ? " open" : ""}`}
-            onMouseEnter={() => setOpenIndex(1)}
-            onMouseLeave={() => setOpenIndex((i) => (i === 1 ? null : i))}
+            onMouseEnter={() => openMenu(1)}
+            onMouseLeave={() => scheduleClose(1)}
             onBlur={(e) => {
               if (!e.currentTarget.contains(e.relatedTarget as Node)) {
                 setOpenIndex((i) => (i === 1 ? null : i));
@@ -120,7 +143,7 @@ export default function Header() {
               type="button"
               aria-haspopup="true"
               aria-expanded={openIndex === 1}
-              onClick={() => setOpenIndex(openIndex === 1 ? null : 1)}
+              onClick={() => (openIndex === 1 ? setOpenIndex(null) : openMenu(1))}
             >
               Industries
               <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">
