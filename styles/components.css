@@ -44,7 +44,9 @@
 .card:nth-child(2), .card:nth-child(3) { grid-column: span 5; }
 
 .cards--flow {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+  /* max track 342px: 3×342 + 2×28 gap = 1082px fits the 1084px wrap content
+     width, so three cards sit in one row instead of wrapping 2+1 */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 342px));
   justify-content: center;
 }
 .cards--flow .card { grid-column: auto !important; }
@@ -54,12 +56,13 @@
   padding: clamp(26px, 3vw, 40px);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 1px 2px rgba(15, 26, 46, .05), 0 6px 16px -10px rgba(15, 26, 46, .1);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 1px 2px rgba(15, 26, 46, .06), 0 6px 16px -10px rgba(15, 26, 46, .12);
   transition: translate .5s var(--ease), box-shadow .5s var(--ease);
 }
 .card:hover {
   translate: 0 -4px;
-  box-shadow: 0 2px 4px rgba(15, 26, 46, .06), 0 16px 32px -16px rgba(15, 26, 46, .18);
+  box-shadow: 0 2px 4px rgba(15, 26, 46, .07), 0 16px 32px -16px rgba(15, 26, 46, .2);
 }
 .card__glyph { display: block; }
 
@@ -137,7 +140,7 @@ a.card--ink:hover .card__more { color: var(--red); }
 
 .pin-cards {
   position: relative;
-  background: var(--bg-soft);
+  background: var(--bg);
   border-top: 1px solid var(--line);
 }
 .pin-cards__sticky {
@@ -249,7 +252,8 @@ a.card--ink:hover .card__more { color: var(--red); }
 /* ═══════════════ APPROACH ═══════════════ */
 
 .approach {
-  background: var(--bg-soft);
+  background: var(--bg);
+  border-top: 1px solid var(--line);
   padding: clamp(96px, 11vw, 160px) 0 clamp(112px, 13vw, 170px);
 }
 .approach__grid {
@@ -282,38 +286,38 @@ a.card--ink:hover .card__more { color: var(--red); }
   font-size: clamp(48px, 5vw, 72px); font-weight: 800; letter-spacing: -0.04em;
   color: rgba(29, 29, 31, .12); line-height: 1;
 }
-.step h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+.step h3 {
+  font-size: 22px; font-weight: 800; letter-spacing: -0.02em;
+  /* keep the heading clear of the oversized absolute step number */
+  padding-right: clamp(56px, 7vw, 96px);
+}
 .step p { margin-top: 10px; font-size: 15px; line-height: 1.65; color: var(--ink-70); font-weight: 500; max-width: 52ch; text-wrap: pretty; }
 
 /* ═══════════════ INDUSTRIES ═══════════════ */
 
 .industries {
-  background: var(--bg);
+  background: var(--bg-soft);
   border-top: 1px solid var(--line);
   position: relative;
   padding: clamp(112px, 13vw, 170px) 0;
-}
-.industries::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(720px 440px at 12% 10%, rgba(255, 255, 255, .24), transparent 70%);
 }
 .industries .wrap { position: relative; }
 .ind-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: rgba(29, 29, 31, .12);
-  border: 1px solid rgba(29, 29, 31, .12);
+  background: var(--line-strong);
+  border: 1px solid var(--line-strong);
 }
 .ind {
-  background: var(--bg);
+  background: var(--card);
   padding: 26px 24px 34px;
   position: relative;
   display: block;
   text-decoration: none; color: inherit;
   transition: background .35s var(--ease);
 }
-.ind:hover { background: #d3d4d5; }
+.ind:hover { background: #ececea; }
 .ind::after {
   content: ""; position: absolute; left: 24px; bottom: 20px;
   width: 26px; height: 3px; background: var(--red);
@@ -344,13 +348,16 @@ a.card--ink:hover .card__more { color: var(--red); }
   padding: clamp(26px, 3vw, 36px);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 2px rgba(15, 26, 46, .05), 0 6px 16px -10px rgba(15, 26, 46, .1);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 1px 2px rgba(15, 26, 46, .06), 0 6px 16px -10px rgba(15, 26, 46, .12);
   transition: translate .5s var(--ease), box-shadow .5s var(--ease);
 }
 .testi:hover {
   translate: 0 -4px;
-  box-shadow: 0 2px 4px rgba(15, 26, 46, .06), 0 16px 32px -16px rgba(15, 26, 46, .18);
+  box-shadow: 0 2px 4px rgba(15, 26, 46, .07), 0 16px 32px -16px rgba(15, 26, 46, .2);
 }
+/* a lone testimonial spans the grid instead of leaving an empty column */
+.testi:only-child { grid-column: 1 / -1; }
 
 .testi__tag {
   display: flex; align-items: center; gap: 8px;
@@ -399,8 +406,10 @@ a.card--ink:hover .card__more { color: var(--red); }
 }
 .contact-band__divider {
   height: 40px;
+  /* checker color must match the background of the section directly above
+     (the work/testimonials band) or the teeth read as a rendering artifact */
   background:
-    conic-gradient(var(--bg) 25%, #0000 0 50%, var(--bg) 0 75%, #0000 0)
+    conic-gradient(var(--bg-soft) 25%, #0000 0 50%, var(--bg-soft) 0 75%, #0000 0)
     0 0 / 80px 80px var(--navy);
 }
 .contact-band__inner { text-align: center; padding: clamp(96px, 11vw, 150px) 0 clamp(40px, 6vw, 70px); }
@@ -532,9 +541,12 @@ a.card--ink:hover .card__more { color: var(--red); }
 }
 .walk__head { margin-bottom: clamp(40px, 5vw, 64px); }
 .walk__grid2 {
-  display: grid; grid-template-columns: minmax(280px, .85fr) 1.15fr;
+  display: grid; grid-template-columns: minmax(300px, 1fr) 1.1fr;
   gap: clamp(32px, 5vw, 72px); align-items: start;
 }
+/* the head margin only makes sense when the head sits above stacked content;
+   inside the two-column layout it just hangs dead space under column 1 */
+.walk__grid2 .walk__head { margin-bottom: 0; }
 
 .prose p { font-size: 15.5px; line-height: 1.75; color: var(--ink-70); font-weight: 500; }
 .prose p + p { margin-top: 16px; }
@@ -550,9 +562,10 @@ a.card--ink:hover .card__more { color: var(--red); }
 .points span { font-weight: 500; color: var(--ink-70); }
 .walk--ink .points span { color: rgba(238, 241, 246, .62); }
 
-.related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(29, 29, 31, .12); border: 1px solid rgba(29, 29, 31, .12); }
+/* auto-fit so 5 related items make 5 equal columns instead of a 4+1 orphan */
+.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--line-strong); border: 1px solid var(--line-strong); }
 .walk--ink .related-grid { background: rgba(238, 241, 246, .12); border-color: rgba(238, 241, 246, .12); }
-.related-grid .ind { background: var(--bg-soft); }
+.related-grid .ind { background: var(--card); }
 .walk--ink .related-grid .ind { background: #1a1a1d; }
 .walk--ink .related-grid .ind:hover { background: #232326; }
 .walk--ink .related-grid .ind h3 { color: #fff; }
@@ -584,18 +597,17 @@ a.card--ink:hover .card__more { color: var(--red); }
 
 /* Proof strip — headline stats */
 .proof-strip { background: var(--bg); border-top: 1px solid var(--line); padding: clamp(64px, 8vw, 96px) 0; }
-.proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: clamp(24px, 4vw, 40px); text-align: center; }
-.proof-stat__num { font-size: clamp(32px, 4.5vw, 52px); font-weight: 800; letter-spacing: -0.03em; color: var(--red); }
+.proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(24px, 4vw, 40px); text-align: center; }
+.proof-stat__num {
+  font-size: clamp(26px, 2.9vw, 40px);
+  font-weight: 800; letter-spacing: -0.03em; color: var(--red);
+  /* every stat stays one line so the four labels share a baseline row */
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
 .proof-stat__label { margin-top: 8px; font-size: 13.5px; font-weight: 600; color: var(--ink-70); }
-.proof-logos { margin-top: clamp(48px, 6vw, 72px); display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 48px); justify-content: center; align-items: center; }
-.proof-logos span { font-size: 14px; font-weight: 700; color: var(--ink-60); letter-spacing: -0.01em; }
-
-/* Tech stack strip */
-.stack-strip { background: var(--bg-soft); border-top: 1px solid var(--line); padding: clamp(56px, 7vw, 80px) 0; }
-.stack-grid { display: flex; flex-wrap: wrap; gap: clamp(14px, 2vw, 22px); justify-content: center; }
-.stack-chip {
-  padding: 10px 18px; background: var(--card); font-size: 13.5px; font-weight: 700;
-  color: var(--ink-70); box-shadow: 0 1px 2px rgba(15,26,46,.05);
+@media (max-width: 760px) {
+  .proof-grid { grid-template-columns: 1fr 1fr; }
 }
 
 /* Filter chips (Work index) */
@@ -610,7 +622,7 @@ a.card--ink:hover .card__more { color: var(--red); }
 
 /* Pricing cards */
 .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(16px, 2vw, 24px); }
-.price-card { background: var(--card); padding: clamp(28px, 3vw, 36px); display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(15,26,46,.05), 0 6px 16px -10px rgba(15,26,46,.1); }
+.price-card { background: var(--card); padding: clamp(28px, 3vw, 36px); display: flex; flex-direction: column; border: 1px solid var(--line-strong); box-shadow: 0 1px 2px rgba(15,26,46,.06), 0 6px 16px -10px rgba(15,26,46,.12); }
 .price-card h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
 .price-card__figure { margin-top: 16px; font-size: clamp(26px, 3vw, 34px); font-weight: 800; letter-spacing: -0.02em; color: var(--red); }
 .price-card__note { margin-top: 4px; font-size: 12.5px; font-weight: 600; color: var(--ink-60); }

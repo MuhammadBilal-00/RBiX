@@ -10,14 +10,14 @@
   height: var(--nav-h);
   display: flex; align-items: center; gap: clamp(16px, 2.6vw, 40px);
   padding: 0 10px 0 20px;
-  background: rgba(210, 210, 210, .38);
+  background: rgba(255, 255, 255, .55);
   border: 1px solid rgba(29, 29, 31, .07);
   border-radius: 2px;
   box-shadow: 0 1px 2px rgba(29, 29, 31, .04), 0 12px 32px -16px rgba(15, 26, 46, .14);
   transition: background .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease);
 }
 .nav.scrolled {
-  background: rgba(214, 214, 214, .62);
+  background: rgba(255, 255, 255, .8);
   /* glass blur only once scrolled off the hero — at the top of the page the
      backdrop is the autoplaying video, and a fixed backdrop-filter there
      forces a snapshot + blur pass on every video frame */
@@ -73,7 +73,7 @@
   position: absolute; top: calc(100% + 14px); left: 50%;
   transform: translateX(-50%) translateY(6px);
   min-width: 240px;
-  background: rgba(214, 214, 214, .82);
+  background: rgba(255, 255, 255, .9);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
   backdrop-filter: blur(20px) saturate(1.4);
   border: 1px solid rgba(29, 29, 31, .1);
@@ -100,7 +100,7 @@
   padding: 9px 12px;
   transition: background .2s var(--ease);
 }
-.nav__drop a:hover { background: rgba(255, 255, 255, .5); }
+.nav__drop a:hover { background: rgba(29, 29, 31, .05); }
 .nav__drop a small {
   display: block; margin-top: 2px;
   font-size: 11.5px; font-weight: 500; color: var(--ink-60);
@@ -142,7 +142,7 @@
 
 .nav__overlay {
   position: fixed; inset: 0; z-index: 45;
-  background: rgba(205, 205, 205, .88);
+  background: rgba(255, 255, 255, .94);
   -webkit-backdrop-filter: blur(28px);
   backdrop-filter: blur(28px);
   display: flex; align-items: flex-start;

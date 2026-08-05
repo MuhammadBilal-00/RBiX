@@ -34,11 +34,6 @@ const proofStats = [
   { num: "~100%", label: "Kitchen order accuracy" },
 ];
 
-const stack = [
-  "n8n", "WhatsApp Business API", "Salla", "Zid", "Shopify",
-  ".NET", "React", "SQL Server", "Oracle",
-];
-
 const caseStudies = getPublishedCaseStudies();
 
 export default function HomePage() {
@@ -151,19 +146,6 @@ export default function HomePage() {
         ]}
       </PinnedCards>
 
-      <section className="proof-strip">
-        <div className="wrap">
-          <div className="proof-grid">
-            {proofStats.map((s) => (
-              <div key={s.label}>
-                <div className="proof-stat__num">{s.num}</div>
-                <div className="proof-stat__label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <RevealGroup as="section" className="walk walk--soft">
         <div className="wrap walk__grid2">
           <div className="walk__head">
@@ -234,6 +216,20 @@ export default function HomePage() {
         </div>
       </RevealGroup>
 
+      {/* outcome stats sit directly above the case studies they headline */}
+      <section className="proof-strip">
+        <div className="wrap">
+          <div className="proof-grid">
+            {proofStats.map((s) => (
+              <div key={s.label}>
+                <div className="proof-stat__num">{s.num}</div>
+                <div className="proof-stat__label">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <RevealGroup as="section" className="testimonials" id="work">
         <div className="wrap">
           <h2 className="section__title reveal">What we&apos;ve shipped,<br />and what it moved.</h2>
@@ -262,16 +258,6 @@ export default function HomePage() {
           </Link>
         </div>
       </RevealGroup>
-
-      <section className="stack-strip">
-        <div className="wrap">
-          <div className="stack-grid">
-            {stack.map((s) => (
-              <span key={s} className="stack-chip">{s}</span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="contact-band" id="contact">
         <div className="contact-band__divider" aria-hidden="true"></div>
