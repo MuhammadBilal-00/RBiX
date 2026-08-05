@@ -8,10 +8,11 @@ import { useEffect, useRef } from "react";
  * viewport, staggered by sibling order. A safety timeout forces `.in` on
  * anything the observer never catches (matches the old 4s failsafe).
  */
-export default function useReveal<T extends HTMLElement = HTMLDivElement>() {
+export default function useReveal<T extends HTMLElement = HTMLDivElement>(enabled = true) {
   const ref = useRef<T | null>(null);
 
   useEffect(() => {
+    if (!enabled) return;
     const root = ref.current;
     if (!root) return;
 
@@ -43,7 +44,7 @@ export default function useReveal<T extends HTMLElement = HTMLDivElement>() {
       observer.disconnect();
       window.clearTimeout(failSafe);
     };
-  }, []);
+  }, [enabled]);
 
   return ref;
 }

@@ -67,9 +67,7 @@ export default function PricingPage() {
               return (
                 <article className="price-card reveal" key={service.href}>
                   <h3>{service.label}</h3>
-                  <p className="price-card__figure">
-                    <span className="todo-flag">Starting from — figure pending</span>
-                  </p>
+                  {/* price-card__figure returns here once starting-from bands are confirmed */}
                   <p className="price-card__note">{detail.note}</p>
                   <p className="price-card__body">{detail.body}</p>
                   <Link className="btn btn--line" href="/contact/">

@@ -205,16 +205,18 @@ a.card--ink:hover .card__more { color: var(--red); }
   overflow-y: auto;
 }
 
-@media (max-width: 900px) {
-  .pin-cards__sticky { height: 100svh; }
-  .pin-cards__grid { grid-template-columns: 1fr; gap: 20px; align-content: center; height: 100%; }
-  .pin-cards__head .section__title { margin-bottom: 16px; }
-  .pin-cards__rail { flex-direction: row; flex-wrap: wrap; gap: 8px 18px; }
-  .pin-cards__dot { border-top: 0; padding: 4px 0; gap: 8px; }
-  .pin-cards__stage { flex: 1; height: auto; min-height: 0; }
+/* Desktop first-paint guard: the server marks only card 0 active, so before
+   the scroll effect runs the other three stay hidden instead of stacking
+   opaque. Scoped to exactly the pinned context (desktop, motion allowed,
+   JS on) so it can never hide cards in any static-stack mode; browsers
+   too old for (scripting: enabled) simply skip the guard. */
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) and (scripting: enabled) {
+  .pin-card:not(.is-active) { opacity: 0; }
 }
 
-@media (prefers-reduced-motion: reduce), (scripting: none) {
+/* Static stack: phones/tablets, reduced-motion, and no-JS all get a normal
+   flowing card list instead of the pin + crossfade. */
+@media (max-width: 900px), (prefers-reduced-motion: reduce), (scripting: none) {
   .pin-cards { height: auto !important; }
   .pin-cards__sticky { position: static; height: auto; }
   .pin-cards__grid { display: block; padding: clamp(112px, 13vw, 170px) 0; }
@@ -228,13 +230,14 @@ a.card--ink:hover .card__more { color: var(--red); }
   .pin-cards__stage .pin-card:nth-child(1), .pin-cards__stage .pin-card:nth-child(4) { grid-column: span 7; }
   .pin-cards__stage .pin-card:nth-child(2), .pin-cards__stage .pin-card:nth-child(3) { grid-column: span 5; }
   .pin-card {
-    position: static !important;
-    opacity: 1 !important;
-    transform: none !important;
+    position: static;
+    pointer-events: auto;
+    will-change: auto;
   }
   .pin-card .card { height: auto; overflow: visible; }
 }
-@media (max-width: 900px) and (prefers-reduced-motion: reduce), (max-width: 900px) and (scripting: none) {
+@media (max-width: 900px) {
+  .pin-cards__grid { padding: clamp(96px, 12vw, 140px) 0; }
   .pin-cards__stage { grid-template-columns: 1fr; }
   .pin-cards__stage .pin-card { grid-column: auto; }
 }

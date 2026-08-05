@@ -126,7 +126,7 @@
 
 .nav__burger {
   display: none;
-  width: 40px; height: 40px; flex: none;
+  width: 44px; height: 44px; flex: none;
   flex-direction: column; align-items: center; justify-content: center; gap: 6px;
   background: none; border: 0; cursor: pointer;
 }
@@ -142,32 +142,53 @@
   background: rgba(205, 205, 205, .88);
   -webkit-backdrop-filter: blur(28px);
   backdrop-filter: blur(28px);
-  display: flex; align-items: center;
+  display: flex; align-items: flex-start;
+  overflow-y: auto;
   opacity: 0; visibility: hidden;
   transition: opacity .5s var(--ease), visibility .5s;
 }
 .nav__overlay.open { opacity: 1; visibility: visible; }
 .nav__overlay nav {
   display: flex; flex-direction: column; gap: 10px;
-  padding: 0 clamp(28px, 8vw, 64px);
+  padding: calc(var(--nav-h) + 28px) clamp(28px, 8vw, 64px) 40px;
   width: 100%;
+  /* auto margins center the menu when it fits and collapse to 0 when it
+     overflows, so long menus scroll instead of clipping */
+  margin: auto 0;
+}
+.nav__overlay a, .nav__overlay-group {
+  transform: translateY(42px); opacity: 0;
+  transition: transform .7s var(--ease), opacity .7s var(--ease);
+  transition-delay: calc(50ms + var(--i, 0) * 45ms);
 }
 .nav__overlay a {
   text-decoration: none; color: var(--ink);
   font-size: clamp(32px, 8.5vw, 44px); font-weight: 800; letter-spacing: -0.03em;
-  transform: translateY(42px); opacity: 0;
-  transition: transform .7s var(--ease), opacity .7s var(--ease);
 }
-.nav__overlay.open a { transform: none; opacity: 1; }
-.nav__overlay a:nth-child(1) { transition-delay: .08s; }
-.nav__overlay a:nth-child(2) { transition-delay: .13s; }
-.nav__overlay a:nth-child(3) { transition-delay: .18s; }
-.nav__overlay a:nth-child(4) { transition-delay: .23s; }
-.nav__overlay a:nth-child(5) { transition-delay: .3s; }
+.nav__overlay.open a, .nav__overlay.open .nav__overlay-group { transform: none; opacity: 1; }
+.nav__overlay a.active { color: var(--red); }
+.nav__overlay-group { margin-top: 22px; }
+.nav__overlay-group a {
+  /* links inside the group ride the group's transition, not their own */
+  transform: none; opacity: 1; transition: none;
+}
+.nav__overlay-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-60);
+  margin-bottom: 6px;
+}
+.nav__overlay-industries {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px;
+}
+.nav__overlay-industries a {
+  font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+  padding: 11px 0;
+}
 .nav__overlay-cta {
   margin-top: 26px;
   font-size: 17px !important; font-weight: 700 !important; letter-spacing: 0 !important;
   color: var(--red) !important;
+  padding: 12px 0;
 }
 
 /* ═══════════════ HERO (video intro → static reveal) ═══════════════ */

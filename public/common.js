@@ -78,11 +78,19 @@
       burger.classList.toggle("open", open);
       overlay.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", String(open));
+      // page must not keep scrolling under the opaque overlay
+      document.documentElement.style.overflow = open ? "hidden" : "";
     };
     burger.addEventListener("click", () =>
       setMenu(!overlay.classList.contains("open")));
     overlay.querySelectorAll("a").forEach(a =>
       a.addEventListener("click", () => setMenu(false)));
+    overlay.addEventListener("click", e => {
+      if (e.target === overlay) setMenu(false);
+    });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && overlay.classList.contains("open")) setMenu(false);
+    });
   }
 
   /* ── reveal-on-scroll with sibling stagger ───────────────── */

@@ -7,12 +7,6 @@ export const metadata = {
     "RBiX Technologies replaces manual, disconnected workflows with automated, data-driven systems — AI embedded into production ERP, HMIS, and accounting platforms, not bolted onto a support inbox.",
 };
 
-const TEAM_PLACEHOLDERS = [
-  { role: "Founder & CEO" },
-  { role: "Engineering Lead" },
-  { role: "Client Delivery" },
-];
-
 function ArrowIcon() {
   return (
     <span className="btn__ic" aria-hidden="true">
@@ -86,11 +80,11 @@ export default function AboutPage() {
           </div>
           <div className="prose reveal">
             <p>
+              {/* [TODO: confirm] the "100+ clients" figure is not independently verified */}
               RBiX&rsquo;s AI work sits somewhere else: inside the production ERP, HMIS, and
               accounting systems clients already run their business on, not a demo layered on top
-              of one. That background spans 100+ clients{" "}
-              <span className="todo-flag">Confirm client count</span> across systems where the
-              model reads and writes against the same live data as the rest of the business.
+              of one. That background spans 100+ clients across systems where the model reads and
+              writes against the same live data as the rest of the business.
             </p>
             <p>
               That&rsquo;s what makes AI in a client&rsquo;s core operations credible rather than
@@ -142,31 +136,8 @@ export default function AboutPage() {
         </div>
       </RevealGroup>
 
-      <RevealGroup as="section" className="walk walk--light">
-        <div className="wrap">
-          <div className="walk__head">
-            <p className="tag reveal">
-              <span className="sq"></span>Team
-            </p>
-            <h2 className="walk__title reveal">Who&rsquo;s behind the work.</h2>
-            <p className="walk__lede reveal">
-              Names and bios are being finalized ahead of launch — the roles below reflect how
-              delivery is structured, not filler copy.
-            </p>
-          </div>
-          <div className="cards cards--flow">
-            {TEAM_PLACEHOLDERS.map((member) => (
-              <article className="card reveal" key={member.role}>
-                <h3>{member.role}</h3>
-                <p>
-                  <span className="todo-flag">Name pending</span>
-                </p>
-                <p>Bio pending.</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </RevealGroup>
+      {/* Team section returns once real names/bios exist — placeholder cards
+          ("Name pending / Bio pending") were shipping to production. */}
 
       <section className="finalcta">
         <div className="wrap">

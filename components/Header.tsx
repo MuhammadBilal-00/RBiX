@@ -20,14 +20,33 @@ export default function Header() {
         setOpenIndex(null);
       }
     }
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setOpenIndex(null);
+        setMobileOpen(false);
+      }
+    }
     document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, []);
 
   useEffect(() => {
     setMobileOpen(false);
     setOpenIndex(null);
   }, [pathname]);
+
+  // The overlay is fixed and opaque; without this the page keeps scrolling
+  // underneath it on touch.
+  useEffect(() => {
+    document.documentElement.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -129,15 +148,45 @@ export default function Header() {
         </button>
       </header>
 
-      <div className={`nav__overlay${mobileOpen ? " open" : ""}`} id="navOverlay">
+      <div
+        className={`nav__overlay${mobileOpen ? " open" : ""}`}
+        id="navOverlay"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) setMobileOpen(false);
+        }}
+      >
         <nav aria-label="Mobile">
-          {servicesNav.map((item) => (
-            <Link key={item.href} href={item.href}>{item.label}</Link>
+          {[...servicesNav, ...primaryNav].map((item, i) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={isActive(item.href) ? "active" : undefined}
+              style={{ "--i": i } as React.CSSProperties}
+            >
+              {item.label}
+            </Link>
           ))}
-          {primaryNav.map((item) => (
-            <Link key={item.href} href={item.href}>{item.label}</Link>
-          ))}
-          <Link className="nav__overlay-cta" href="/contact/">Get in Touch</Link>
+          <div className="nav__overlay-group" style={{ "--i": 8 } as React.CSSProperties}>
+            <p className="nav__overlay-label">Industries</p>
+            <div className="nav__overlay-industries">
+              {industriesNav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={isActive(item.href) ? "active" : undefined}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <Link
+            className="nav__overlay-cta"
+            href="/contact/"
+            style={{ "--i": 9 } as React.CSSProperties}
+          >
+            Get in Touch
+          </Link>
         </nav>
       </div>
     </>

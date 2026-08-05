@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, ReactNode } from "react";
+import { useEffect, useRef, useState, ReactNode } from "react";
+import useReveal from "@/hooks/useReveal";
 
 interface PinnedCardsProps {
   titles: string[];
@@ -15,20 +16,34 @@ function clamp(v: number, min: number, max: number) {
 }
 
 /**
- * Pins the section in the viewport for a fixed scroll distance and
- * crossfades between cards as the user scrolls, instead of stacking
- * every card down the page. Falls back to a normal static stack (see
- * the .pin-cards rules under prefers-reduced-motion/scripting:none in
- * components.css) when motion isn't wanted or JS never runs.
+ * Desktop: pins the section in the viewport for a fixed scroll distance and
+ * crossfades between cards as the user scrolls, instead of stacking every
+ * card down the page. On ≤900px viewports, under prefers-reduced-motion, or
+ * without JS, the section is a normal static card stack instead (see the
+ * .pin-cards media blocks in components.css) — the pin effect never runs
+ * there, and on phones the cards get the standard reveal-on-scroll entrance.
  */
 export default function PinnedCards({ titles, children, heading }: PinnedCardsProps) {
   const n = children.length;
   const wrapRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const dotRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [isStatic, setIsStatic] = useState(false);
+  const revealRef = useReveal<HTMLDivElement>(isStatic);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const queries = [
+      window.matchMedia("(max-width: 900px)"),
+      window.matchMedia("(prefers-reduced-motion: reduce)"),
+    ];
+    const apply = () => setIsStatic(queries.some((q) => q.matches));
+    apply();
+    queries.forEach((q) => q.addEventListener("change", apply));
+    return () => queries.forEach((q) => q.removeEventListener("change", apply));
+  }, []);
+
+  useEffect(() => {
+    if (isStatic) return;
 
     let ticking = false;
     let lastScaled = 0;
@@ -129,8 +144,16 @@ export default function PinnedCards({ titles, children, heading }: PinnedCardsPr
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       window.clearTimeout(snapTimer);
+      // Crossing into static mode (resize past 900px / reduced-motion flip)
+      // must not leave cards stuck at a JS-written opacity/transform.
+      cardRefs.current.forEach((el) => {
+        if (!el) return;
+        el.style.opacity = "";
+        el.style.transform = "";
+        el.style.zIndex = "";
+      });
     };
-  }, [n]);
+  }, [n, isStatic]);
 
   const scrollToIndex = (i: number) => {
     const wrap = wrapRef.current;
@@ -171,14 +194,14 @@ export default function PinnedCards({ titles, children, heading }: PinnedCardsPr
               ))}
             </div>
           </div>
-          <div className="pin-cards__stage">
+          <div className="pin-cards__stage" ref={revealRef}>
             {children.map((child, i) => (
               <div
                 key={i}
                 ref={(el) => {
                   cardRefs.current[i] = el;
                 }}
-                className={`pin-card${i === 0 ? " is-active" : ""}`}
+                className={`pin-card${i === 0 ? " is-active" : ""}${isStatic ? " reveal" : ""}`}
               >
                 {child}
               </div>
