@@ -265,8 +265,34 @@ a:focus-visible, button:focus-visible {
 .nav__overlay a:nth-child(7) { transition-delay: .32s; }
 .nav__overlay a:nth-child(8) { transition-delay: .36s; }
 .nav__overlay a:nth-child(9) { transition-delay: .4s; }
+/* Industries group sits at the 9th position (after the 8 primary links),
+   so it takes over the nth-child(9) delay slot; the CTA — now the 10th
+   child, past the last numbered rule — gets its delay set explicitly below. */
+.nav__overlay-group {
+  margin-top: 22px;
+  transform: translateY(42px); opacity: 0;
+  transition: transform .7s var(--ease), opacity .7s var(--ease);
+  transition-delay: .4s;
+}
+.nav__overlay.open .nav__overlay-group { transform: none; opacity: 1; }
+.nav__overlay-group a {
+  transform: none; opacity: 1; transition: none;
+}
+.nav__overlay-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-60);
+  margin-bottom: 6px;
+}
+.nav__overlay-industries {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px;
+}
+.nav__overlay-industries a {
+  font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+  padding: 11px 0;
+}
 .nav__overlay-cta {
   margin-top: 26px;
+  transition-delay: .44s;
   font-size: 17px !important; font-weight: 700 !important; letter-spacing: 0 !important;
   color: var(--red) !important;
 }
@@ -949,6 +975,6 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal.in { animation: none; opacity: 1; }
   .loader__mark { animation: none; }
-  .nav__overlay a { transition: none; }
+  .nav__overlay a, .nav__overlay-group { transition: none; }
   .skip, .card, .ind::after, .nav__drop { transition: none; }
 }
