@@ -1,6 +1,7 @@
 import Link from "next/link";
 import IntroVideo from "@/components/IntroVideo";
 import RevealGroup from "@/components/RevealGroup";
+import PinnedCards from "@/components/PinnedCards";
 import BrandMark from "@/components/BrandMark";
 import { industriesNav, contactInfo } from "@/data/nav";
 import { getPublishedCaseStudies } from "@/data/work";
@@ -45,11 +46,13 @@ export default function HomePage() {
     <>
       <IntroVideo />
 
-      <RevealGroup as="section" className="services" id="services">
-        <div className="wrap">
-          <h2 className="section__title reveal">Four capabilities.<br />One stack.</h2>
-          <div className="cards">
-            <Link className="card card--ink reveal" href="/services/ai-automation/">
+      <PinnedCards
+        heading={<h2 className="section__title">Four capabilities.<br />One stack.</h2>}
+        titles={["AI & Automation", "Web & Custom Software", "Mobile Applications", "Data Analytics & BI"]}
+      >
+        {[
+          (
+            <Link key="ai-automation" className="card card--ink" href="/services/ai-automation/">
               <span className="card__index" aria-hidden="true">01</span>
               <svg className="card__glyph" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true">
                 <rect x="40" y="0" width="20" height="20" /><rect x="0" y="40" width="20" height="20" />
@@ -72,8 +75,9 @@ export default function HomePage() {
                 </svg>
               </span>
             </Link>
-
-            <Link className="card reveal" href="/services/web-software/">
+          ),
+          (
+            <Link key="web-software" className="card" href="/services/web-software/">
               <span className="card__index" aria-hidden="true">02</span>
               <svg className="card__glyph" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true">
                 <rect x="0" y="0" width="20" height="20" /><rect x="80" y="0" width="20" height="20" />
@@ -95,8 +99,9 @@ export default function HomePage() {
                 </svg>
               </span>
             </Link>
-
-            <Link className="card reveal" href="/services/mobile-apps/">
+          ),
+          (
+            <Link key="mobile-apps" className="card" href="/services/mobile-apps/">
               <span className="card__index" aria-hidden="true">03</span>
               <svg className="card__glyph" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true">
                 <rect x="40" y="0" width="20" height="20" /><rect x="40" y="40" width="20" height="20" />
@@ -118,8 +123,9 @@ export default function HomePage() {
                 </svg>
               </span>
             </Link>
-
-            <Link className="card reveal" href="/services/data-analytics/">
+          ),
+          (
+            <Link key="data-analytics" className="card" href="/services/data-analytics/">
               <span className="card__index" aria-hidden="true">04</span>
               <svg className="card__glyph" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true">
                 <rect x="0" y="80" width="20" height="20" /><rect x="40" y="40" width="20" height="20" />
@@ -141,9 +147,9 @@ export default function HomePage() {
                 </svg>
               </span>
             </Link>
-          </div>
-        </div>
-      </RevealGroup>
+          ),
+        ]}
+      </PinnedCards>
 
       <section className="proof-strip">
         <div className="wrap">
