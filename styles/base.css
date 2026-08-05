@@ -11,8 +11,6 @@
   display: flex; align-items: center; gap: clamp(16px, 2.6vw, 40px);
   padding: 0 10px 0 20px;
   background: rgba(210, 210, 210, .38);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  backdrop-filter: blur(16px) saturate(1.4);
   border: 1px solid rgba(29, 29, 31, .07);
   border-radius: 2px;
   box-shadow: 0 1px 2px rgba(29, 29, 31, .04), 0 12px 32px -16px rgba(15, 26, 46, .14);
@@ -20,6 +18,11 @@
 }
 .nav.scrolled {
   background: rgba(214, 214, 214, .62);
+  /* glass blur only once scrolled off the hero — at the top of the page the
+     backdrop is the autoplaying video, and a fixed backdrop-filter there
+     forces a snapshot + blur pass on every video frame */
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
   border-color: rgba(29, 29, 31, .11);
   box-shadow: 0 2px 4px rgba(29, 29, 31, .05), 0 18px 44px -18px rgba(15, 26, 46, .22);
 }
@@ -289,9 +292,11 @@
 @media (scripting: none) {
   .reveal { opacity: 1; }
 }
+/* opacity + transform only — animating filter here forced a repaint-per-frame
+   blur pass on every revealed element, including the hero h1 (the LCP) */
 @keyframes rise {
-  from { opacity: 0; transform: translateY(26px); filter: blur(6px); }
-  to   { opacity: 1; transform: none; filter: none; }
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
 }
 .reveal--scale.in { animation-name: settle; }
 @keyframes settle {

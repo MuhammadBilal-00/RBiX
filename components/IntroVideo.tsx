@@ -11,20 +11,20 @@ import Link from "next/link";
  * construction). It just keeps playing behind the hero text for as long as
  * the visitor is on the page.
  *
- * The mobile/desktop variant is picked in JS via matchMedia rather than
- * relying on native <source media> matching: Safari's support for the
- * `media` attribute on <video><source> is unreliable in practice (it can
- * fall through to the desktop variant on real iOS devices), which is what
- * shipped the desktop video — with its baked-in service labels sized for a
- * landscape frame — onto phones. Before JS decides, the SSR/no-JS markup
- * still lists all four <source> tags as a best-effort fallback.
+ * Load strategy: the SSR markup is the poster image only, so the hero paints
+ * immediately with zero video bytes on the critical path (and no-JS visitors
+ * simply keep the poster). After mount, matchMedia picks the mobile or
+ * desktop mp4 and a single <video> fades in over the poster. The variant is
+ * picked in JS rather than via <video><source media> because Safari's
+ * support for that attribute is unreliable — it shipped the desktop video
+ * (with baked-in landscape labels) onto real phones. mp4 only: the h264
+ * files are ~2.6× smaller than their vp9 twins and universally supported.
  */
 export default function IntroVideo() {
-  const [reducedMotion, setReducedMotion] = useState(false);
   const [variant, setVariant] = useState<"mobile" | "desktop" | null>(null);
 
   useEffect(() => {
-    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const mq = window.matchMedia("(max-width: 768px)");
     const apply = () => setVariant(mq.matches ? "mobile" : "desktop");
     apply();
@@ -34,41 +34,19 @@ export default function IntroVideo() {
 
   return (
     <section className="hero" aria-label="RBiX Technologies">
-      {reducedMotion ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img className="hero__media" src="/media/intro/poster.jpg" alt="" aria-hidden="true" />
-      ) : (
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="hero__media" src="/media/intro/poster.jpg" alt="" aria-hidden="true" />
+      {variant !== null && (
         <video
-          key={variant ?? "default"}
           className="hero__media"
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/media/intro/poster.jpg"
-        >
-          {variant === "mobile" && (
-            <>
-              <source src="/media/intro/rbix-intro-mobile.webm" type="video/webm" />
-              <source src="/media/intro/rbix-intro-mobile.mp4" type="video/mp4" />
-            </>
-          )}
-          {variant === "desktop" && (
-            <>
-              <source src="/media/intro/rbix-intro.webm" type="video/webm" />
-              <source src="/media/intro/rbix-intro.mp4" type="video/mp4" />
-            </>
-          )}
-          {variant === null && (
-            <>
-              <source src="/media/intro/rbix-intro-mobile.webm" type="video/webm" media="(max-width: 768px)" />
-              <source src="/media/intro/rbix-intro-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
-              <source src="/media/intro/rbix-intro.webm" type="video/webm" />
-              <source src="/media/intro/rbix-intro.mp4" type="video/mp4" />
-            </>
-          )}
-        </video>
+          src={variant === "mobile" ? "/media/intro/rbix-intro-mobile.mp4" : "/media/intro/rbix-intro.mp4"}
+        />
       )}
       <div className="hero__scrim" aria-hidden="true" />
       <div className="hero__content reveal in">

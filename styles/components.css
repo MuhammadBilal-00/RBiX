@@ -189,20 +189,24 @@ a.card--ink:hover .card__more { color: var(--red); }
 
 .pin-cards__stage {
   position: relative;
-  height: min(64vh, 600px);
+  height: min(68vh, 620px);
 }
 .pin-card {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  will-change: opacity, transform;
 }
+/* compositor layers only while the section is near the viewport (JS toggles
+   is-near) — not four promoted layers for the whole page lifetime */
+.pin-cards.is-near .pin-card { will-change: opacity, transform; }
 .pin-card.is-active { pointer-events: auto; }
 .pin-card .card {
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  /* hidden, not auto: a scrollable card swallows wheel events and stalls the
+     pin progression. Stage height is sized so the tallest card fits. */
+  overflow: hidden;
 }
 
 /* Desktop first-paint guard: the server marks only card 0 active, so before
