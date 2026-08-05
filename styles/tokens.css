@@ -61,4 +61,4 @@ a:focus-visible, button:focus-visible {
   outline: 2px solid var(--red);
   outline-offset: 3px;
 }
-.btn--red:focus-visible, .contact a:focus-visible { outline-color: #eef1f6; }
+.btn--red:focus-visible { outline-color: #eef1f6; }

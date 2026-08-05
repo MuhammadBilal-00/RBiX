@@ -1,5 +1,6 @@
 import Link from "next/link";
 import BrandMark from "@/components/BrandMark";
+import { servicesNav } from "@/data/nav";
 
 export const metadata = { title: "Page not found" };
 
@@ -13,7 +14,7 @@ export default function NotFound() {
         </p>
         <h1>That page moved, or never existed.</h1>
         <p className="pagehead__lede">
-          Check the address, or head back to the homepage — from there every service, industry, and case study is one click away.
+          Check the address, or jump straight to where you were probably headed:
         </p>
         <div className="pagehead__actions">
           <Link className="btn btn--red" href="/">
@@ -25,6 +26,16 @@ export default function NotFound() {
             </span>
           </Link>
           <Link className="btn btn--line" href="/contact/">Contact us</Link>
+        </div>
+        <div className="pagehead__meta">
+          {servicesNav.map((s) => (
+            <div key={s.href}>
+              <strong>{s.label}</strong>
+              <Link href={s.href} style={{ color: "inherit" }}>
+                {s.blurb}
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </section>

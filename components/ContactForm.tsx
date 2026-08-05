@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useEffect, useRef, useState, FormEvent } from "react";
 import Script from "next/script";
 import { contactInfo, servicesNav } from "@/data/nav";
 
@@ -51,6 +51,14 @@ export default function ContactForm() {
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const successRef = useRef<HTMLDivElement | null>(null);
+
+  // The form is replaced by the success panel on submit; without moving
+  // focus there, screen-reader and keyboard users are left on a control
+  // that no longer exists.
+  useEffect(() => {
+    if (status === "success") successRef.current?.focus();
+  }, [status]);
 
   function update<K extends keyof FormState>(key: K, value: string) {
     setForm((f) => ({ ...f, [key]: value }));
@@ -144,13 +152,17 @@ export default function ContactForm() {
       )}
 
       {status === "success" && (
-        <div className="contact-success">
+        <div className="contact-success" ref={successRef} tabIndex={-1}>
           <strong>Thanks — message received.</strong>
           <span>We read every enquiry personally and reply within one business day.</span>
         </div>
       )}
 
-      {status === "error" && <div className="contact-error">{GENERIC_ERROR_MESSAGE}</div>}
+      {status === "error" && (
+        <div className="contact-error" role="alert">
+          {GENERIC_ERROR_MESSAGE}
+        </div>
+      )}
 
       {status !== "success" && (
         <form className="form" onSubmit={handleSubmit} noValidate>
@@ -165,8 +177,10 @@ export default function ContactForm() {
                 placeholder="Jordan Smith"
                 value={form.name}
                 onChange={(e) => update("name", e.target.value)}
+                aria-invalid={errors.name ? true : undefined}
+                aria-describedby={errors.name ? "name-error" : undefined}
               />
-              {errors.name && <span className="field__error">{errors.name}</span>}
+              {errors.name && <span className="field__error" id="name-error">{errors.name}</span>}
             </div>
             <div className="field">
               <label htmlFor="company">Company</label>
@@ -193,8 +207,10 @@ export default function ContactForm() {
                 placeholder="you@company.com"
                 value={form.email}
                 onChange={(e) => update("email", e.target.value)}
+                aria-invalid={errors.email ? true : undefined}
+                aria-describedby={errors.email ? "email-error" : undefined}
               />
-              {errors.email && <span className="field__error">{errors.email}</span>}
+              {errors.email && <span className="field__error" id="email-error">{errors.email}</span>}
             </div>
             <div className="field">
               <label htmlFor="phone">Phone (optional)</label>
@@ -236,8 +252,10 @@ export default function ContactForm() {
               placeholder="e.g. Leads sit unanswered overnight, our no-show rate is high, invoices go unpaid for weeks…"
               value={form.message}
               onChange={(e) => update("message", e.target.value)}
+              aria-invalid={errors.message ? true : undefined}
+              aria-describedby={errors.message ? "message-error" : undefined}
             />
-            {errors.message && <span className="field__error">{errors.message}</span>}
+            {errors.message && <span className="field__error" id="message-error">{errors.message}</span>}
           </div>
 
           {/* Honeypot — visually hidden via .hp-field (off-screen, not display:none)

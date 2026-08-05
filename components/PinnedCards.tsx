@@ -253,7 +253,25 @@ export default function PinnedCards({ titles, children, heading }: PinnedCardsPr
         <div className="wrap pin-cards__grid">
           <div className="pin-cards__head">
             {heading}
-            <div className="pin-cards__rail" role="tablist" aria-label="Capabilities">
+            <div
+              className="pin-cards__rail"
+              role="tablist"
+              aria-label="Capabilities"
+              aria-orientation="vertical"
+              onKeyDown={(e) => {
+                const current = dotRefs.current.findIndex((d) => d === document.activeElement);
+                if (current === -1) return;
+                let next = -1;
+                if (e.key === "ArrowDown" || e.key === "ArrowRight") next = Math.min(current + 1, n - 1);
+                else if (e.key === "ArrowUp" || e.key === "ArrowLeft") next = Math.max(current - 1, 0);
+                else if (e.key === "Home") next = 0;
+                else if (e.key === "End") next = n - 1;
+                if (next === -1 || next === current) return;
+                e.preventDefault();
+                dotRefs.current[next]?.focus();
+                scrollToIndex(next);
+              }}
+            >
               {titles.map((t, i) => (
                 <button
                   key={t}

@@ -2,31 +2,6 @@
    Page sections, cards, subpage system, contact form
    ═══════════════════════════════════════════════════════════ */
 
-/* ═══════════════ ABOUT / MANIFESTO STRIP ═══════════════ */
-
-.about {
-  background: var(--bg);
-  position: relative;
-  padding: clamp(112px, 13vw, 180px) 0;
-}
-.about::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(720px 440px at 84% 6%, rgba(255, 255, 255, .28), transparent 70%);
-}
-.about .wrap { position: relative; }
-.about__title {
-  font-size: clamp(30px, 4.2vw, 56px);
-  font-weight: 800; letter-spacing: -0.028em; line-height: 1.12;
-  max-width: 1020px;
-  text-wrap: balance;
-}
-.about__title em { font-style: normal; color: var(--red); }
-.about__body {
-  margin-top: 34px; max-width: 62ch;
-  font-size: clamp(15px, 1.4vw, 18px); line-height: 1.7; color: var(--ink-70); font-weight: 500;
-  text-wrap: pretty;
-}
-
 /* ═══════════════ SERVICES / CARDS ═══════════════ */
 
 .services {
@@ -117,11 +92,14 @@ a.card {
   margin-top: 22px;
   text-decoration: none; color: var(--ink);
   font-size: 13.5px; font-weight: 800; letter-spacing: .01em;
-  background: none; border: 0;
+  /* invisible hit-area expansion to a ~40px touch target */
+  padding-block: 10px; margin-block: 12px -10px;
 }
 .card__more svg { transition: transform .3s var(--ease); }
-a.card:hover .card__more { color: var(--red); }
-a.card:hover .card__more svg { transform: translate(2px, -2px); }
+/* the affordance animates whether the whole card is the link (a.card) or
+   only the inner .card__more link is (article cards) */
+a.card:hover .card__more, .card .card__more:hover { color: var(--red); }
+a.card:hover .card__more svg, .card .card__more:hover svg { transform: translate(2px, -2px); }
 .card--ink .card__more { color: #eef1f6; }
 a.card--ink:hover .card__more { color: var(--red); }
 
@@ -455,10 +433,13 @@ a.card--ink:hover .card__more { color: var(--red); }
   font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
   color: rgba(238, 241, 246, .56); margin-bottom: 16px;
 }
-.footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 3px; }
 .footer__col a {
+  display: inline-block;
   text-decoration: none; color: rgba(238, 241, 246, .7);
   font-size: 13.5px; font-weight: 500;
+  /* padded rows instead of thin text lines — tappable on touch */
+  padding-block: 4px;
   transition: color .2s var(--ease);
 }
 .footer__col a:hover { color: #eef1f6; }
@@ -477,7 +458,11 @@ a.card--ink:hover .card__more { color: var(--red); }
   font-size: 12.5px; font-weight: 600;
   margin-bottom: clamp(28px, 4vw, 44px);
 }
-.crumb a { color: rgba(238, 241, 246, .68); text-decoration: none; transition: color .2s var(--ease); }
+.crumb a {
+  color: rgba(238, 241, 246, .68); text-decoration: none;
+  display: inline-block; padding-block: 8px; margin-block: -8px;
+  transition: color .2s var(--ease);
+}
 .crumb a:hover { color: #eef1f6; }
 .crumb span { color: rgba(238, 241, 246, .3); }
 .crumb em { font-style: normal; color: #eef1f6; }
@@ -502,7 +487,7 @@ a.card--ink:hover .card__more { color: var(--red); }
 .pagehead .wrap { position: relative; }
 .pagehead .tag { color: rgba(238, 241, 246, .72); }
 .pagehead h1 {
-  font-size: clamp(38px, 6vw, 76px);
+  font-size: clamp(34px, 5vw + 10px, 76px);
   font-weight: 800; letter-spacing: -0.035em; line-height: 1.02;
   max-width: 18ch; text-wrap: balance;
 }
@@ -693,7 +678,7 @@ a.card--ink:hover .card__more { color: var(--red); }
 .contact-info__item a, .contact-info__item p { font-size: 16px; font-weight: 700; text-decoration: none; color: var(--ink); }
 .contact-info__item a:hover { color: var(--red); }
 
-/* ═══════════════ RESPONSIVE ═══════════════ */
+/* ═══════════════ RESPONSIVE (descending breakpoint order) ═══════════════ */
 
 @media (max-width: 1024px) {
   .ind-grid { grid-template-columns: repeat(2, 1fr); }
@@ -702,13 +687,12 @@ a.card--ink:hover .card__more { color: var(--red); }
   .contact-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 640px) {
-  .testi-grid { grid-template-columns: 1fr; }
-}
-
 @media (max-width: 900px) {
   .cards { grid-template-columns: 1fr; }
   .cards .card { grid-column: auto; }
+  /* testimonials collapse with their sibling card grids, not at their own
+     one-off 640px breakpoint */
+  .testi-grid { grid-template-columns: 1fr; }
   .approach__grid { grid-template-columns: 1fr; }
   .approach__head { position: static; }
   .walk__grid2 { grid-template-columns: 1fr; }

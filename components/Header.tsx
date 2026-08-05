@@ -65,7 +65,16 @@ export default function Header() {
         </Link>
 
         <nav className="nav__links" aria-label="Primary">
-          <div className={`nav__item${openIndex === 0 ? " open" : ""}`}>
+          <div
+            className={`nav__item${openIndex === 0 ? " open" : ""}`}
+            onMouseEnter={() => setOpenIndex(0)}
+            onMouseLeave={() => setOpenIndex((i) => (i === 0 ? null : i))}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                setOpenIndex((i) => (i === 0 ? null : i));
+              }
+            }}
+          >
             <button
               type="button"
               aria-haspopup="true"
@@ -97,7 +106,16 @@ export default function Header() {
             </Link>
           ))}
 
-          <div className={`nav__item${openIndex === 1 ? " open" : ""}`}>
+          <div
+            className={`nav__item${openIndex === 1 ? " open" : ""}`}
+            onMouseEnter={() => setOpenIndex(1)}
+            onMouseLeave={() => setOpenIndex((i) => (i === 1 ? null : i))}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                setOpenIndex((i) => (i === 1 ? null : i));
+              }
+            }}
+          >
             <button
               type="button"
               aria-haspopup="true"
