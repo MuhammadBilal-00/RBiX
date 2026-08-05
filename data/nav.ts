@@ -14,14 +14,14 @@ export const servicesNav: NavLink[] = [
 // Industries remain on the legacy static HTML for this phase — absolute
 // paths so they resolve correctly regardless of which app they're linked from.
 export const industriesNav: NavLink[] = [
-  { label: "Clinics & Aesthetics", href: "/industries/clinics-aesthetics/" },
-  { label: "Real Estate", href: "/industries/real-estate/" },
-  { label: "E-commerce", href: "/industries/ecommerce/" },
-  { label: "Home & Field Services", href: "/industries/field-services/" },
-  { label: "Professional Services", href: "/industries/professional-services/" },
-  { label: "Construction", href: "/industries/construction/" },
-  { label: "Retail & Hospitality", href: "/industries/retail-hospitality/" },
-  { label: "Compliance-driven SMEs", href: "/industries/compliance-smes/" },
+  { label: "Clinics & Aesthetics", href: "/industries/clinics-aesthetics/", blurb: "Dental, cosmetic, aesthetic & veterinary practices" },
+  { label: "Real Estate", href: "/industries/real-estate/", blurb: "Brokerages and property / facility management firms" },
+  { label: "E-commerce", href: "/industries/ecommerce/", blurb: "Direct-to-consumer and retail brands selling online" },
+  { label: "Home & Field Services", href: "/industries/field-services/", blurb: "Contractors, inspection and maintenance businesses" },
+  { label: "Professional Services", href: "/industries/professional-services/", blurb: "Accounting, bookkeeping and legal practices" },
+  { label: "Construction", href: "/industries/construction/", blurb: "Firms managing tenders, site work and certifications" },
+  { label: "Retail & Hospitality", href: "/industries/retail-hospitality/", blurb: "Multi-branch retail, salons, appointment-based venues" },
+  { label: "Compliance-driven SMEs", href: "/industries/compliance-smes/", blurb: "Invoicing, tax and regulatory deadline management" },
 ];
 
 export const primaryNav: NavLink[] = [

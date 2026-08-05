@@ -83,14 +83,13 @@ export default function ServiceHubStub({
               <article className="card card--soon reveal" key={tile.title}>
                 <h3>{tile.title}</h3>
                 <p>{tile.body}</p>
-                <span className="card__more">Detail page coming soon</span>
               </article>
             ))}
           </div>
         </div>
       </RevealGroup>
 
-      <RevealGroup as="section" className="walk walk--soft">
+      <RevealGroup as="section" className="walk walk--soft walk--compact">
         <div className="wrap walk__grid2">
           <div className="reveal">
             <p className="tag">

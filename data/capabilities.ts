@@ -453,11 +453,13 @@ export const capabilityPages: Record<string, CapabilityPageProps> = {
     dontSeeWorkflow: {
       body: "Tell us what system you run the business on. If it holds real data and real workflows, there's almost certainly an embedded-AI layer worth scoping.",
     },
-    // No testimonialSlug and no relatedCaseStudySlug here on purpose: Numbers
-    // AI is the flagship example for this capability, but its case study is
-    // `unpublished` in data/work.ts pending attribution sign-off (plan §14).
-    // CapabilityPage also defensively refuses to render a link to any
-    // unpublished case study even if one were passed in here.
+    // robert-vance is the ERP-platform testimonial — the closest published
+    // proof for embedded/core-system work. No relatedCaseStudySlug on
+    // purpose: Numbers AI is the flagship example for this capability, but
+    // its case study is `unpublished` in data/work.ts pending attribution
+    // sign-off (plan §14). CapabilityPage also defensively refuses to render
+    // a link to any unpublished case study even if one were passed in here.
+    testimonialSlug: "robert-vance",
     faq: [
       {
         q: "Is this only for companies with an existing custom system?",

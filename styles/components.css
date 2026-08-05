@@ -34,6 +34,8 @@
   border-top: 1px solid var(--line);
   padding: clamp(112px, 13vw, 170px) 0;
 }
+/* stacked sections directly under a pagehead don't need the full band */
+.section--tight { padding: clamp(72px, 8vw, 110px) 0; }
 
 .cards {
   display: grid;
@@ -133,8 +135,6 @@ a.card--ink:hover .card__more { color: var(--red); }
 /* non-clickable info tile variant — used on stub service hubs for
    Tier-1 capability names whose own pages don't exist yet */
 .card--soon { cursor: default; }
-.card--soon .card__more { color: var(--ink-60); cursor: default; }
-.card--soon .card__more svg { display: none; }
 
 /* ═══════════════ PINNED SERVICE CARDS (scroll-swap) ═══════════════ */
 
@@ -526,6 +526,8 @@ a.card--ink:hover .card__more { color: var(--red); }
 .walk { padding: clamp(96px, 12vw, 160px) 0; position: relative; }
 .walk--light { background: var(--bg); border-top: 1px solid var(--line); }
 .walk--soft  { background: var(--bg-soft); border-top: 1px solid var(--line); }
+/* short single-paragraph sections shouldn't carry full-section padding */
+.walk--compact { padding: clamp(64px, 8vw, 96px) 0; }
 .walk--ink   { background: #1a1a1d; color: #eef1f6; }
 .walk--ink .tag { color: rgba(238, 241, 246, .6); }
 .walk--ink .walk__title { color: #fff; }
@@ -560,7 +562,11 @@ a.card--ink:hover .card__more { color: var(--red); }
 }
 .points strong { display: block; font-weight: 800; margin-bottom: 3px; }
 .points span { font-weight: 500; color: var(--ink-70); }
+/* single-line points (span with no strong lead-in, e.g. the capability
+   pages' connect-to lists) read as full items, not orphaned detail text */
+.points li > span:only-child { font-weight: 600; color: var(--ink); }
 .walk--ink .points span { color: rgba(238, 241, 246, .62); }
+.walk--ink .points li > span:only-child { color: #eef1f6; }
 
 /* auto-fit so 5 related items make 5 equal columns instead of a 4+1 orphan */
 .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--line-strong); border: 1px solid var(--line-strong); }
@@ -609,16 +615,6 @@ a.card--ink:hover .card__more { color: var(--red); }
 @media (max-width: 760px) {
   .proof-grid { grid-template-columns: 1fr 1fr; }
 }
-
-/* Filter chips (Work index) */
-.filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: clamp(32px, 4vw, 48px); }
-.filter-chip {
-  border: 1px solid rgba(29,29,31,.22); background: none; cursor: pointer;
-  padding: 9px 18px; font: inherit; font-size: 13.5px; font-weight: 700; color: var(--ink-70);
-  border-radius: 2px; transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
-}
-.filter-chip:hover { border-color: var(--ink); color: var(--ink); }
-.filter-chip.active { background: var(--ink); border-color: var(--ink); color: #fff; }
 
 /* Pricing cards */
 .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(16px, 2vw, 24px); }

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { testimonials } from "@/data/testimonials";
 import { getPublishedCaseStudies } from "@/data/work";
 import TestimonialCard from "@/components/TestimonialCard";
-import WorkFilters from "@/components/WorkFilters";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -30,13 +29,34 @@ export default function WorkIndexPage() {
         </div>
       </header>
 
-      <section className="services">
+      {/* Filters return once there are enough case studies to filter (≥6);
+          with three, five chips over three cards was pure UI overhead. */}
+      <section className="services section--tight">
         <div className="wrap">
-          <WorkFilters caseStudies={publishedCaseStudies} />
+          <div className="cards cards--flow">
+            {publishedCaseStudies.map((c) => (
+              <article className="card" key={c.slug}>
+                <p className="tag"><span className="sq" aria-hidden="true"></span>{c.serviceTag}</p>
+                <h3>{c.client}</h3>
+                <p>{c.summary}</p>
+                <ul>
+                  {c.metrics.slice(0, 2).map((m) => (
+                    <li key={m.label}><strong>{m.value}</strong> — {m.label}</li>
+                  ))}
+                </ul>
+                <Link className="card__more" href={`/work/${c.slug}/`}>
+                  Read the case study
+                  <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">
+                    <path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                  </svg>
+                </Link>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="testimonials">
+      <section className="testimonials section--tight">
         <div className="wrap">
           <h2 className="section__title">More client results</h2>
           <div className="testi-grid">

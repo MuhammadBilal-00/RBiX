@@ -108,7 +108,7 @@ export default function PricingPage() {
             <li className="reveal">
               <strong>Custom software and mobile scope varies the most</strong>
               <span>
-                and is priced after a short technical discovery call, once real requirements —
+                It&rsquo;s priced after a short technical discovery call, once real requirements —
                 roles, integrations, platforms — are known.
               </span>
             </li>

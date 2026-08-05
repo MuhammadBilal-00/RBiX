@@ -253,10 +253,14 @@ a:focus-visible, button:focus-visible {
 }
 .nav__overlay.open a { transform: none; opacity: 1; }
 .nav__overlay a:nth-child(1) { transition-delay: .08s; }
-.nav__overlay a:nth-child(2) { transition-delay: .13s; }
-.nav__overlay a:nth-child(3) { transition-delay: .18s; }
-.nav__overlay a:nth-child(4) { transition-delay: .23s; }
-.nav__overlay a:nth-child(5) { transition-delay: .3s; }
+.nav__overlay a:nth-child(2) { transition-delay: .12s; }
+.nav__overlay a:nth-child(3) { transition-delay: .16s; }
+.nav__overlay a:nth-child(4) { transition-delay: .2s; }
+.nav__overlay a:nth-child(5) { transition-delay: .24s; }
+.nav__overlay a:nth-child(6) { transition-delay: .28s; }
+.nav__overlay a:nth-child(7) { transition-delay: .32s; }
+.nav__overlay a:nth-child(8) { transition-delay: .36s; }
+.nav__overlay a:nth-child(9) { transition-delay: .4s; }
 .nav__overlay-cta {
   margin-top: 26px;
   font-size: 17px !important; font-weight: 700 !important; letter-spacing: 0 !important;

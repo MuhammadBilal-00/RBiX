@@ -111,7 +111,10 @@ export default function Header() {
             </button>
             <div className="nav__drop nav__drop--wide">
               {industriesNav.map((item) => (
-                <Link key={item.href} href={item.href}>{item.label}</Link>
+                <Link key={item.href} href={item.href}>
+                  {item.label}
+                  {item.blurb && <small>{item.blurb}</small>}
+                </Link>
               ))}
             </div>
           </div>

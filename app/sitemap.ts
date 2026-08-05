@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getPublishedCaseStudies } from "@/data/work";
+import { industriesNav } from "@/data/nav";
 
 // Required for `output: 'export'` — without this, `next build` fails to
 // statically prerender /sitemap.xml.
@@ -40,7 +41,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // flag and RBIX-REDESIGN-PLAN.md §14 (attribution sign-off still open).
   const workRoutes = getPublishedCaseStudies().map((c) => `work/${c.slug}/`);
 
-  const allRoutes = [...STATIC_ROUTES, ...capabilityRoutes, ...workRoutes];
+  // The 8 legacy static industry pages, sourced from the nav data so this
+  // list can't drift from what the site actually links to.
+  const industryRoutes = industriesNav.map((i) => i.href.replace(/^\//, ""));
+
+  const allRoutes = [...STATIC_ROUTES, ...capabilityRoutes, ...workRoutes, ...industryRoutes];
 
   const buildDate = new Date();
 

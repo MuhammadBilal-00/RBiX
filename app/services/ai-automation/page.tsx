@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import RevealGroup from "@/components/RevealGroup";
-import { aiAutomationCapabilities } from "@/data/capabilities";
+import { aiAutomationCapabilities, capabilityPages } from "@/data/capabilities";
 import { getCaseStudy } from "@/data/work";
 
 export const metadata: Metadata = {
@@ -75,6 +75,12 @@ export default function Page() {
               <article className="card reveal" key={cap.slug}>
                 <h3>{cap.label}</h3>
                 <p>{cap.blurb}</p>
+                <ul>
+                  {/* headline systems from the capability's own detail page */}
+                  {capabilityPages[cap.slug].whatWeBuild.items.slice(0, 3).map((item) => (
+                    <li key={item.title}>{item.title}</li>
+                  ))}
+                </ul>
                 <Link className="card__more" href={`/services/ai-automation/${cap.slug}/`}>
                   See the full capability
                   <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">

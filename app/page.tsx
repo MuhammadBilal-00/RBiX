@@ -16,17 +16,6 @@ function ArrowIcon() {
   );
 }
 
-const industryBlurbs: Record<string, string> = {
-  "Clinics & Aesthetics": "Dental, cosmetic, aesthetic & veterinary practices",
-  "Real Estate": "Brokerages and property / facility management firms",
-  "E-commerce": "Direct-to-consumer and retail brands selling online",
-  "Home & Field Services": "Contractors, inspection and maintenance businesses",
-  "Professional Services": "Accounting, bookkeeping and legal practices",
-  Construction: "Firms managing tenders, site work and certifications",
-  "Retail & Hospitality": "Multi-branch retail, salons, appointment-based venues",
-  "Compliance-driven SMEs": "Invoicing, tax and regulatory deadline management",
-};
-
 const proofStats = [
   { num: "4hrs → 2min", label: "Lead response time" },
   { num: "+30%", label: "Conversion lift, first month" },
@@ -209,7 +198,7 @@ export default function HomePage() {
             {industriesNav.map((ind) => (
               <Link key={ind.href} className="ind reveal" href={ind.href}>
                 <h3>{ind.label}</h3>
-                <p>{industryBlurbs[ind.label]}</p>
+                <p>{ind.blurb}</p>
               </Link>
             ))}
           </div>
