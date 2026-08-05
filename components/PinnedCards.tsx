@@ -31,6 +31,17 @@ export default function PinnedCards({ titles, children, heading }: PinnedCardsPr
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let ticking = false;
+    let lastScaled = 0;
+    let snapTimer: number | undefined;
+
+    const scrollToOffset = (offset: number) => {
+      const wrap = wrapRef.current;
+      if (!wrap) return;
+      const vh = window.innerHeight;
+      const total = wrap.offsetHeight - vh;
+      const target = wrap.offsetTop + (offset / (n - 1)) * total;
+      window.scrollTo({ top: target + 1, behavior: "smooth" });
+    };
 
     const update = () => {
       ticking = false;
@@ -43,6 +54,7 @@ export default function PinnedCards({ titles, children, heading }: PinnedCardsPr
 
       const raw = clamp(-rect.top / total, 0, 1);
       const scaled = raw * (n - 1);
+      lastScaled = scaled;
       const seg = clamp(Math.floor(scaled), 0, n - 2);
       const local = clamp(scaled - seg, 0, 1);
 
@@ -81,11 +93,33 @@ export default function PinnedCards({ titles, children, heading }: PinnedCardsPr
       dotRefs.current.forEach((d, i) => d?.classList.toggle("is-active", i === activeIndex));
     };
 
+    // Opacity is a direct function of scroll position, so stopping mid-scroll
+    // leaves two cards visibly overlapping (double-exposed text). Once scroll
+    // events go quiet for a beat, ease to the nearest whole card so the view
+    // always settles on a single readable card instead of a blend.
+    const scheduleSnap = () => {
+      window.clearTimeout(snapTimer);
+      snapTimer = window.setTimeout(() => {
+        const nearest = clamp(Math.round(lastScaled), 0, n - 1);
+        const wrap = wrapRef.current;
+        if (!wrap) return;
+        const vh = window.innerHeight;
+        const total = wrap.offsetHeight - vh;
+        if (total <= 0) return;
+        const currentOffset = (lastScaled / (n - 1)) * total;
+        const targetOffset = (nearest / (n - 1)) * total;
+        if (Math.abs(targetOffset - currentOffset) > 2) {
+          scrollToOffset(nearest);
+        }
+      }, 140);
+    };
+
     const onScroll = () => {
       if (!ticking) {
         ticking = true;
         requestAnimationFrame(update);
       }
+      scheduleSnap();
     };
 
     update();
@@ -94,6 +128,7 @@ export default function PinnedCards({ titles, children, heading }: PinnedCardsPr
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.clearTimeout(snapTimer);
     };
   }, [n]);
 

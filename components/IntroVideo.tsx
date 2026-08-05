@@ -10,12 +10,26 @@ import Link from "next/link";
  * janky; native `loop` on a pre-built ping-pong file is smooth by
  * construction). It just keeps playing behind the hero text for as long as
  * the visitor is on the page.
+ *
+ * The mobile/desktop variant is picked in JS via matchMedia rather than
+ * relying on native <source media> matching: Safari's support for the
+ * `media` attribute on <video><source> is unreliable in practice (it can
+ * fall through to the desktop variant on real iOS devices), which is what
+ * shipped the desktop video — with its baked-in service labels sized for a
+ * landscape frame — onto phones. Before JS decides, the SSR/no-JS markup
+ * still lists all four <source> tags as a best-effort fallback.
  */
 export default function IntroVideo() {
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [variant, setVariant] = useState<"mobile" | "desktop" | null>(null);
 
   useEffect(() => {
     setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const mq = window.matchMedia("(max-width: 768px)");
+    const apply = () => setVariant(mq.matches ? "mobile" : "desktop");
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
   }, []);
 
   return (
@@ -25,6 +39,7 @@ export default function IntroVideo() {
         <img className="hero__media" src="/media/intro/poster.jpg" alt="" aria-hidden="true" />
       ) : (
         <video
+          key={variant ?? "default"}
           className="hero__media"
           autoPlay
           muted
@@ -33,10 +48,26 @@ export default function IntroVideo() {
           preload="auto"
           poster="/media/intro/poster.jpg"
         >
-          <source src="/media/intro/rbix-intro-mobile.webm" type="video/webm" media="(max-width: 768px)" />
-          <source src="/media/intro/rbix-intro-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
-          <source src="/media/intro/rbix-intro.webm" type="video/webm" />
-          <source src="/media/intro/rbix-intro.mp4" type="video/mp4" />
+          {variant === "mobile" && (
+            <>
+              <source src="/media/intro/rbix-intro-mobile.webm" type="video/webm" />
+              <source src="/media/intro/rbix-intro-mobile.mp4" type="video/mp4" />
+            </>
+          )}
+          {variant === "desktop" && (
+            <>
+              <source src="/media/intro/rbix-intro.webm" type="video/webm" />
+              <source src="/media/intro/rbix-intro.mp4" type="video/mp4" />
+            </>
+          )}
+          {variant === null && (
+            <>
+              <source src="/media/intro/rbix-intro-mobile.webm" type="video/webm" media="(max-width: 768px)" />
+              <source src="/media/intro/rbix-intro-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+              <source src="/media/intro/rbix-intro.webm" type="video/webm" />
+              <source src="/media/intro/rbix-intro.mp4" type="video/mp4" />
+            </>
+          )}
         </video>
       )}
       <div className="hero__scrim" aria-hidden="true" />
