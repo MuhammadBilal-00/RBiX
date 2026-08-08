@@ -2,14 +2,19 @@ import Link from "next/link";
 import RevealGroup from "@/components/RevealGroup";
 import { industriesNav } from "@/data/nav";
 import { getTestimonial } from "@/data/testimonials";
+import { getCaseStudy } from "@/data/work";
 
 export interface ServiceHubStubProps {
   title: string;
   lede: string;
   meta: { label: string; value: string }[];
+  problem: { title: string; paragraphs: string[] };
   tiles: { title: string; body: string }[];
+  connectTo: string[];
   aiAdds: { title: string; body: string };
   testimonialSlugs?: string[];
+  relatedCaseStudySlug?: string;
+  faq: { q: string; a: string }[];
   ctaTitle: string;
 }
 
@@ -24,20 +29,27 @@ function ArrowIcon() {
 }
 
 /**
- * Lighter template for the 3 service lines whose own capability pages are
- * Phase 4 — routes and testimonials only this phase, Tier-1 names shown as
- * non-clickable tiles (.card--soon) rather than dead links.
+ * Hub template for the 3 service lines whose own capability pages are Phase 4.
+ * Section order: pagehead -> problem -> capability tiles -> what AI adds ->
+ * what we can connect to -> related case study (where one exists) -> FAQ ->
+ * testimonials -> industries -> final CTA.
  */
 export default function ServiceHubStub({
   title,
   lede,
   meta,
+  problem,
   tiles,
+  connectTo,
   aiAdds,
   testimonialSlugs = [],
+  relatedCaseStudySlug,
+  faq,
   ctaTitle,
 }: ServiceHubStubProps) {
   const testimonials = testimonialSlugs.map(getTestimonial).filter(Boolean);
+  const rawCaseStudy = relatedCaseStudySlug ? getCaseStudy(relatedCaseStudySlug) : undefined;
+  const caseStudy = rawCaseStudy && !rawCaseStudy.unpublished ? rawCaseStudy : undefined;
 
   return (
     <>
@@ -75,6 +87,20 @@ export default function ServiceHubStub({
         </div>
       </header>
 
+      <RevealGroup as="section" className="walk walk--light">
+        <div className="wrap walk__grid2">
+          <div className="walk__head">
+            <p className="tag reveal"><span className="sq"></span>The Problem</p>
+            <h2 className="walk__title reveal">{problem.title}</h2>
+          </div>
+          <div className="prose">
+            {problem.paragraphs.map((p, i) => (
+              <p className="reveal" key={i}>{p}</p>
+            ))}
+          </div>
+        </div>
+      </RevealGroup>
+
       <RevealGroup as="section" className="services">
         <div className="wrap">
           <h2 className="section__title reveal">Where this capability shows up</h2>
@@ -99,6 +125,56 @@ export default function ServiceHubStub({
           </div>
           <div className="prose reveal">
             <p>{aiAdds.body}</p>
+          </div>
+        </div>
+      </RevealGroup>
+
+      <RevealGroup as="section" className="walk walk--light">
+        <div className="wrap walk__grid2">
+          <div className="walk__head">
+            <p className="tag reveal"><span className="sq"></span>What We Can Connect To</p>
+            <h2 className="walk__title reveal">Your case is probably in scope.</h2>
+            <p className="walk__lede reveal">These are the systems and sources this work plugs into most often.</p>
+          </div>
+          <ul className="points">
+            {connectTo.map((item) => (
+              <li className="reveal" key={item}><span>{item}</span></li>
+            ))}
+          </ul>
+        </div>
+      </RevealGroup>
+
+      {caseStudy && (
+        <RevealGroup as="section" className="walk walk--ink">
+          <div className="wrap">
+            <div className="walk__head">
+              <p className="tag reveal"><span className="sq"></span>Proof, Not Promises</p>
+              <h2 className="walk__title reveal">{caseStudy.title}</h2>
+            </div>
+            <p className="walk__lede reveal">{caseStudy.summary}</p>
+            <div className="pagehead__actions reveal">
+              <Link className="btn btn--line" href={`/work/${caseStudy.slug}/`}>
+                Read the full case study
+                <ArrowIcon />
+              </Link>
+            </div>
+          </div>
+        </RevealGroup>
+      )}
+
+      <RevealGroup as="section" className="walk walk--soft">
+        <div className="wrap">
+          <div className="walk__head">
+            <p className="tag reveal"><span className="sq"></span>FAQ</p>
+            <h2 className="walk__title reveal">Common questions about {title.toLowerCase()}.</h2>
+          </div>
+          <div className="faq">
+            {faq.map((item) => (
+              <details key={item.q}>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </RevealGroup>

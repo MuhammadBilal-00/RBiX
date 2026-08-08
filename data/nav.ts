@@ -11,8 +11,9 @@ export const servicesNav: NavLink[] = [
   { label: "Data Analytics & BI", href: "/services/data-analytics/", blurb: "Dashboards, attribution, scorecards" },
 ];
 
-// Industries remain on the legacy static HTML for this phase — absolute
-// paths so they resolve correctly regardless of which app they're linked from.
+// All 8 industry pages are now React App Router routes (app/industries/[slug])
+// — the legacy static HTML that used to live in public/industries/ has been
+// migrated, so every nav link here resolves to a client-side route.
 export const industriesNav: NavLink[] = [
   { label: "Clinics & Aesthetics", href: "/industries/clinics-aesthetics/", blurb: "Dental, cosmetic, aesthetic & veterinary practices" },
   { label: "Real Estate", href: "/industries/real-estate/", blurb: "Brokerages and property / facility management firms" },

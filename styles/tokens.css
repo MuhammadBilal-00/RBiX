@@ -9,6 +9,7 @@
   --bg: #ffffff;                          /* pure white base */
   --bg-soft: #f4f4f3;                     /* quiet warm off-white band */
   --ink: #1d1d1f;
+  --ink-80: rgba(29, 29, 31, .82);
   --ink-70: rgba(29, 29, 31, .72);
   --ink-60: rgba(29, 29, 31, .62);
   --line: rgba(29, 29, 31, .1);
